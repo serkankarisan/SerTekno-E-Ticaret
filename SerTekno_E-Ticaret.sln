@@ -3,7 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.Entity", "ETicaret.Entity\ETicaret.Entity.csproj", "{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.DAL", "ETicaret.DAL\ETicaret.DAL.csproj", "{90F7A707-777F-4934-ACD8-5F98F1754F1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.BLL", "ETicaret.BLL\ETicaret.BLL.csproj", "{389BA638-1D2D-4DD9-A1D0-2029333CC6D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.PL", "ETicaret.PL\ETicaret.PL.csproj", "{05F87678-E900-4EBD-ADEF-EF0F7DD57716}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F7A707-777F-4934-ACD8-5F98F1754F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F7A707-777F-4934-ACD8-5F98F1754F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F7A707-777F-4934-ACD8-5F98F1754F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F7A707-777F-4934-ACD8-5F98F1754F1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{389BA638-1D2D-4DD9-A1D0-2029333CC6D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389BA638-1D2D-4DD9-A1D0-2029333CC6D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389BA638-1D2D-4DD9-A1D0-2029333CC6D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389BA638-1D2D-4DD9-A1D0-2029333CC6D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F87678-E900-4EBD-ADEF-EF0F7DD57716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F87678-E900-4EBD-ADEF-EF0F7DD57716}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F87678-E900-4EBD-ADEF-EF0F7DD57716}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F87678-E900-4EBD-ADEF-EF0F7DD57716}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
