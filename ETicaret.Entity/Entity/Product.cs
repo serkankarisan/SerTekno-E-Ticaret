@@ -55,13 +55,13 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 13)]
         public string Properties { get => _properties; set => _properties = value; }
+        public int ModelId { get; set; }
+        public int SubCategoryId { get; set; }
 
         [ForeignKey("ModelId")]
-        public int ModelId { get; set; }
         public virtual Model Model { get; set; }
 
         [ForeignKey("SubCategoryId")]
-        public int SubCategoryId { get; set; }
         public virtual SubCategory SubCategory { get; set; }
 
         public virtual List<ProductImage> ProductImages { get; set; }

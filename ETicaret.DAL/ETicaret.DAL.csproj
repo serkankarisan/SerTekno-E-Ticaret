@@ -76,11 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\ETicaretContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ETicaret.Entity\ETicaret.Entity.csproj">
+      <Project>{DBCAF1C0-741F-4FA6-9E7F-DD50C5BD2805}</Project>
+      <Name>ETicaret.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

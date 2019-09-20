@@ -24,13 +24,13 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 5)]
         public decimal Amount { get => _amount; set => _amount = value; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
 
         [ForeignKey("OrderId")]
-        public int OrderId { get; set; }
         public virtual Order Order { get; set; }
 
         [ForeignKey("ProductId")]
-        public int ProductId { get; set; }
         public virtual Product Product { get; set; }
     }
 }

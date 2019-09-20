@@ -17,9 +17,9 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 3)]
         public string SubCategoryName { get => _subCategoryName; set => _subCategoryName = value; }
+        public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 
         public virtual List<Product> Products { get; set; }

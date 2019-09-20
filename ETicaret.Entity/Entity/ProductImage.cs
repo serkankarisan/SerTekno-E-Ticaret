@@ -16,9 +16,9 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 3)]
         public string ImagesPath { get => _imagesPath; set => _imagesPath = value; }
+        public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]
-        public int ProductId { get; set; }
         public virtual Product Product { get; set; }
     }
 }

@@ -25,9 +25,9 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 5)]
         public DateTime DeliveryDate { get => _deliveryDate; set => _deliveryDate = value; }
+        public string UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public string UserId { get; set; }
         public virtual AppUser AppUser { get; set; }
 
         public virtual List<OrderDetail> OrderDetails { get; set; }

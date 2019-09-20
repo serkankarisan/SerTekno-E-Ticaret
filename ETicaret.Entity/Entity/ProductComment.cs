@@ -18,13 +18,13 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order = 3)]
         public string Content { get => _content; set => _content = value; }
+        public int ProductId { get; set; }
+        public string UserId { get; set; }
 
         [ForeignKey("ProductId")]
-        public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
         [ForeignKey("UserId")]
-        public string UserId { get; set; }
         public virtual AppUser AppUser { get; set; }
     }
 }

@@ -17,9 +17,10 @@ namespace ETicaret.Entity.Entity
         [Required]
         [Column(Order=3)]
         public string ModelName { get => _modelName; set => _modelName = value; }
+        public int BrandId { get; set; }
+
 
         [ForeignKey("BrandId")]
-        public int BrandId { get; set; }
         public virtual Brand Brand { get; set; }
 
         public virtual List<Product> Products { get; set; }

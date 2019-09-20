@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ETicaret.DAL.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,10 @@ namespace ETicaret.PL
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            using (ETicaretContext ent =new ETicaretContext())
+            {
+                ent.Database.CreateIfNotExists();
+            }
         }
     }
 }
