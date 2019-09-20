@@ -15,6 +15,7 @@ namespace ETicaret.PL
             using (ETicaretContext ent =new ETicaretContext())
             {
                 ent.Database.CreateIfNotExists();
+                ent.Roles.ToList();//migration için.
             }
         }
     }
