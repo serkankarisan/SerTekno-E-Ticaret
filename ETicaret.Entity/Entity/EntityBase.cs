@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace ETicaret.Entity.Entity
         private bool _isActive;
 
         [Column(Order = 0)]
+        [Key]
         public int Id { get => _id; set => _id = value; }
         [Column(Order = 1)]
         public DateTime AddedDate { get => _addedDate; set => _addedDate = value; }
