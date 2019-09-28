@@ -8,6 +8,6 @@ namespace ETicaret.PL
 {
     public class General
     {
-        public static RepositoryService Service = new RepositoryService();        
+        public static RepositoryService Service = new RepositoryService();
     }
 }

@@ -14,7 +14,7 @@ namespace ETicaret.DAL.Context
     {
         public ETicaretContext():base("SerTeknoConnstr")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ETicaretContext, Configuration>("ETicaretContext"));
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ETicaretContext, Configuration>("SerTeknoConnstr"));
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Brand> Brands { get; set; }

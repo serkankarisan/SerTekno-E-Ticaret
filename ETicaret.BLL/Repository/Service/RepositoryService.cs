@@ -21,7 +21,7 @@ namespace ETicaret.BLL.Repository.Service
         private readonly ProductImageRepository productImageRepository;
         private readonly ProductRepository productRepository;
         private readonly SubCategoryRepository subCategoryRepository;
-
+        private ETicaretContext _context;
         private readonly UserStore<AppUser> userStore;
         private readonly UserManager<AppUser> userManager;
         private readonly RoleStore<AppRole> roleStore;
@@ -37,10 +37,11 @@ namespace ETicaret.BLL.Repository.Service
             productImageRepository = new ProductImageRepository();
             productCommentRepository = new ProductCommentRepository();
             subCategoryRepository = new SubCategoryRepository();
+            _context = new ETicaretContext(); ;
 
-            userStore = new UserStore<AppUser>(new ETicaretContext());
+            userStore = new UserStore<AppUser>(_context);
             userManager = new UserManager<AppUser>(userStore);
-            roleStore = new RoleStore<AppRole>(new ETicaretContext());
+            roleStore = new RoleStore<AppRole>(_context);
             roleManager = new RoleManager<AppRole>(roleStore);
         }
         public BrandRepository Brand => brandRepository;

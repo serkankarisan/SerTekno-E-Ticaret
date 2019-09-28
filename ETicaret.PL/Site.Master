@@ -1,0 +1,145 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ETicaret.PL.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="Content/css/normalize.css" rel="stylesheet" />
+    <link href="Content/css/Style.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container-fluid">
+            <!-- Header -->
+            <div id="headermasterdark" class="row jumbotron-fluid">
+                <div id="navbardiv" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <a href="#"><img alt="Logo" src="Images/serteknoLogo.png" class="mw-100" /></a>
+                        
+
+                        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#">AnaSayfa <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">İletişim</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link " href="#">Hakkımızda</a>
+                                </li>
+                            </ul>
+                            <div class="form-inline my-2 my-lg-0">
+                                <input id="AraTextboxMasterPage" class="form-control mr-sm-2" type="search" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <hr />
+            <div class="row bg-light">
+                <div id="slogan" class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 text-center">
+                    <div class="h2 text-success">
+                        Alışveriş İçin Yanan Yeşil Işık 
+                    </div>
+                    <hr>
+                </div>
+                <div id="kullanici" class="col-8 col-sm-8 col-md-4 col-lg-3 col-xl-3 text-center">
+                    <div class="dropdown show">
+                        <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLinkProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="row">
+                                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 h5 pt-3">
+                                    Serkan Karışan
+                                </div>
+                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-left pl-0">
+                                    <img id="SiteMasterProfileImg" alt="profil" src="Images/20190429_120018-min.jpg" class="mw-100 rounded-circle">
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkProfile">
+                            <a class="dropdown-item" href="#">Siparişlerim</a>
+                            <a class="dropdown-item" href="#">Kullanıcı İşlemleri</a>
+                            <a class="dropdown-item" href="#">Çıkış Yap</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="sepet" class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 text-center pt-3">
+                    <a href="#">
+                        <div class="row">
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right pr-1">
+                                <img alt="sepet" src="Images/shopping-cart-32.ico" class="mw-100">
+                            </div>
+                            <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-left pt-1 pl-0">
+                                <span class="badge badge-pill badge-success">1</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <!-- Header End -->
+            <hr />
+            <!-- Content -->
+            <div id="content" class="row">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <!-- Content End -->
+            <!-- Footer -->
+            <footer class="mainfooter" role="contentinfo">
+                <div class="footer-middle">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                <div class="footer-pad">
+                                    <a href="#" class="h6">İletişim</a><br />
+                                    <span class="footertextcontent">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                <div class="footer-pad">
+                                    <a href="#" class="h6">Hakkımızda</a><br />
+                                    <span class="footertextcontent">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pb-3 text-center">
+                                <h4>Sosyal Medya</h4>
+                                <ul class="social-network social-circle">
+                                    <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                    <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 copy">
+                                <p class="text-center text-beyaz">&copy; Copyright <%: DateTime.Now.Year.ToString() %> - <a id="footerlink" href="#">sertekno.com</a></p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End-->
+        </div>
+    </form>
+
+    <script src="Content/js/jquery-3.4.1.min.js"></script>
+    <script src="Content/js/popper.min.js"></script>
+    <script src="Content/js/bootstrap.min.js"></script>
+</body>
+</html>

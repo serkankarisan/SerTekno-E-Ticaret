@@ -12,11 +12,18 @@ namespace ETicaret.PL
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            using (ETicaretContext ent =new ETicaretContext())
+            using (ETicaretContext ent = new ETicaretContext())
             {
                 ent.Database.CreateIfNotExists();
-                ent.Roles.ToList();//migration için.
             }
+        }
+        protected void Session_Start(object sender, EventArgs e)
+        {
+
+        }
+        protected void Session_End(object sender, EventArgs e)
+        {
+           
         }
     }
 }
