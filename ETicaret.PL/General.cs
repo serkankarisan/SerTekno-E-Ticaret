@@ -1,4 +1,5 @@
 ﻿using ETicaret.BLL.Repository.Service;
+using ETicaret.Entity.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace ETicaret.PL
     public class General
     {
         public static RepositoryService Service = new RepositoryService();
+        public static AppUser ActiveUser;
     }
 }

@@ -14,15 +14,15 @@
 <body id="loginBody">
     <div id="login" class="container-fluid">
         <div class="col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4 offset-1 offset-sm-1 offset-md-3 offset-lg-4 offset-xl-4 pt-5">
-            <form action="" method="post">
+            <form runat="server">
                 <h3 class="text-center text-success">Giriş Yap</h3>
                 <div class="form-group">
-                    <label for="username" class="text-success">Kullanıcı Adı</label><br>
-                    <input type="text" name="username" id="username" class="form-control">
+                    <asp:Label ID="lblUsername" runat="server" Text="Kullanıcı Adı veya Email" for="txtUsername" CssClass="text-success"></asp:Label><br />
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" name="txtUsername"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <label for="password" class="text-success">Şifre</label><br>
-                    <input type="text" name="password" id="password" class="form-control">
+                    <asp:Label ID="lblPassword" runat="server" Text="Şifre" for="txtPassword" CssClass="text-success"></asp:Label><br />
+                    <asp:TextBox ID="txtPassword" runat="server" name="password" CssClass="form-control" type="password"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <div class="row pt-5">
@@ -30,23 +30,28 @@
                             <div class="row">
                                 <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
                                     <div class="text-left">
-                                        <input type="submit" name="submit" class="btn btn-outline-success btn-md" value="Giriş Yap">
+                                        <asp:Button ID="btnLogin" runat="server" Text="Giriş Yap" CssClass="btn btn-outline-success btn-md" OnClick="SignIn" />
                                     </div>
                                 </div>
                                 <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 pl-0">
-                                    <label for="remember-me" class="text-success">
+                                    <label for="cbxRememberMe" class="text-success">
                                         <span>Beni Hatırla</span>
                                         <span>
-                                            <input id="remember-me" name="remember-me" type="checkbox">
+                                            <asp:CheckBox ID="cbxRememberMe" runat="server" />
                                         </span>
                                     </label>
-                                </div>s
+                                </div>
                             </div>
                         </div>
                         <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                             <div class="text-right">
-                                <a href="#" class="btn btn-outline-success">Kayıt Ol</a>
+                                <asp:LinkButton ID="lnkbtnRegister" href="Register.aspx" runat="server" CssClass="btn btn-outline-success">Kayıt Ol</asp:LinkButton>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-left">
+                            <asp:LinkButton ID="lnkbtnAnasayfa" href="Default.aspx" runat="server" CssClass="btn btn-outline-info">Giriş Yapmadan Devam Et...</asp:LinkButton>
                         </div>
                     </div>
                 </div>
