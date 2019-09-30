@@ -1,6 +1,6 @@
 ﻿#dropdownMenuLinkProfile.dropdown-toggle::after {
     display: none;
-    margin-left: .255em;
+    width:0px;
     vertical-align: .255em;
     content: "";
     border-top: .3em solid transparent;
@@ -15,7 +15,7 @@
 
 #SiteMasterProfileImg {
     height: 50px;
-    width:125px;
+    width:50px;
 }
 
 .text-beyaz {

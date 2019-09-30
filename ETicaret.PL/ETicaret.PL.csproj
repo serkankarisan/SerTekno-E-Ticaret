@@ -120,6 +120,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\20190429_120018-min.jpg" />
+    <Content Include="Images\profile-icon-png-917.png" />
     <Content Include="Images\serteknoLogo.png" />
     <Content Include="Images\shopping-cart-32.ico" />
     <Content Include="Login.aspx" />

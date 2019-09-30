@@ -13,8 +13,19 @@ namespace ETicaret.PL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                if (Request.QueryString["UserName"]!=null)
+                {
+                    lblRegSucces.Text= "Kayıt <strong>Başarılı</strong>.Giriş yaparak devam edebilirsin!";
+                    pnlAlertSuccesRegister.Visible = true;
+                    txtUsername.Text = Request.QueryString["UserName"];
+                    txtPassword.Focus();
+                }
+            }
             if (User.Identity.IsAuthenticated)
             {
+                General.LastUrl = "http://localhost:51010/Login.aspx";
                 Response.Redirect("Default.aspx");
             }
         }
@@ -28,11 +39,13 @@ namespace ETicaret.PL
                 var userIdentity = General.Service.UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 bool RememberMe = cbxRememberMe.Checked;
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = RememberMe }, userIdentity);
+                General.LastUrl = "http://localhost:51010/Login.aspx";
                 Response.Redirect("~/Default.aspx");
             }
             else
             {
-                //StatusText.Text = "Geçersiz kullanıcı adı veya şifre.";
+                lblAlert.Text = "Giriş <strong>Başarısız</strong>. Geçersiz kullanıcı adı veya şifre.";
+                pnlDivAlert.Visible = true;
             }
         }
 

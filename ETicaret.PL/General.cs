@@ -11,5 +11,6 @@ namespace ETicaret.PL
     {
         public static RepositoryService Service = new RepositoryService();
         public static AppUser ActiveUser;
+        public static string LastUrl = "";
     }
 }

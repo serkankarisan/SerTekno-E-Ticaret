@@ -16,13 +16,24 @@
         <div class="col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4 offset-1 offset-sm-1 offset-md-3 offset-lg-4 offset-xl-4 pt-5">
             <form runat="server">
                 <h3 class="text-center text-success">Giriş Yap</h3>
+                 <asp:Panel ID="pnlDivAlert" runat="server" CssClass="alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlAlertSuccesRegister" runat="server" CssClass="alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <asp:Label ID="lblRegSucces" runat="server" Text=""></asp:Label>
+                    </asp:Panel>
                 <div class="form-group">
-                    <asp:Label ID="lblUsername" runat="server" Text="Kullanıcı Adı veya Email" for="txtUsername" CssClass="text-success"></asp:Label><br />
+                    <asp:Label ID="lblUsername" runat="server" Text="Email" for="txtUsername" CssClass="text-success"></asp:Label><br />
                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" name="txtUsername"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorUserName" runat="server" ErrorMessage="Email girmelisiniz!" ControlToValidate="txtUsername" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic"></asp:RequiredFieldValidator>
+                    <asp:RegularExpressionValidator ID="RegularExpressionValidatorUsername" runat="server" ErrorMessage="Geçerli bir Email girmelisiniz!" ControlToValidate="txtUsername" ForeColor="#990000" SetFocusOnError="True" ValidationExpression="[\w-]+@([\w-]+\.)+[\w-]+" Display="Dynamic"></asp:RegularExpressionValidator>
                 </div>
                 <div class="form-group">
                     <asp:Label ID="lblPassword" runat="server" Text="Şifre" for="txtPassword" CssClass="text-success"></asp:Label><br />
                     <asp:TextBox ID="txtPassword" runat="server" name="password" CssClass="form-control" type="password"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorPassword" runat="server" ErrorMessage="Şifre girmelisiniz!" ControlToValidate="txtPassword" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
                     <div class="row pt-5">

@@ -49,25 +49,24 @@
             </div>
             <hr />
             <div class="row bg-light">
-                <div id="slogan" class="col-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 text-center">
+                <div id="slogan" class="col-12 col-sm-12 col-md-4 col-lg-5 col-xl-5 text-center">
                     <div class="h2 text-success">
                         Alışveriş İçin Yanan Yeşil Işık 
                     </div>
                     <hr>
                 </div>
-                <asp:Panel ID="pnlKullanici" runat="server" CssClass="col-8 col-sm-8 col-md-4 col-lg-3 col-xl-3 text-center" Visible="False">
-                    <div class="dropdown show">
+                <asp:Panel ID="pnlKullanici" runat="server" CssClass="col-9 col-sm-9 col-md-6 col-lg-5 col-xl-5" Visible="False">
+                    <div class="dropdown show row pl-5">
                         <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLinkProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="row">
-                                <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9 h5 pt-3">
+                            <div class="row mw-100 mr-1">
+                                <div class="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto h5 pt-3 pr-1">
                                     <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
                                 </div>
-                                <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-left pl-0">
-                                    <asp:Image ID="SiteMasterProfileImg" runat="server" CssClass="mw-100 rounded-circle" alt="ProfilResmi"/>
+                                <div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 text-left pl-0 pr-2 pt-1">
+                                    <asp:Image ID="SiteMasterProfileImg" runat="server" CssClass="rounded-circle" alt="ProfilResmi"/>
                                 </div>
                             </div>
                         </a>
-
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkProfile">
                             <a class="dropdown-item" href="#">Siparişlerim</a>
                             <a class="dropdown-item" href="#">Kullanıcı İşlemleri</a>
@@ -79,7 +78,7 @@
                     <a href="Login.aspx" class="btn btn-outline-success btn-lg mw-100">Giriş Yap</a>
                      <a href="Register.aspx" class="btn btn-outline-info btn-lg mw-100">Kayıt Ol</a>
                 </asp:Panel>
-                <div id="sepet" class="col-4 col-sm-4 col-md-2 col-lg-2 col-xl-2 text-center pt-3">
+                <div id="sepet" class="col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2 text-center pt-3">
                     <a href="#">
                         <div class="row">
                             <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-right pr-1">

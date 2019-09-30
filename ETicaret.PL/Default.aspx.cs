@@ -16,11 +16,13 @@ namespace ETicaret.PL
             {
                 if (User.Identity.IsAuthenticated)
                 {
-                    string UserID = User.Identity.GetUserId();
-                    General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
-                    lblSuccesAlert.Text = "Giriş başarılı. Merhaba "+General.ActiveUser.Name+" "+General.ActiveUser.SurName;
-                    SuccesAlertDiv.Visible = true;
-                    SuccesAlertDiv.Visible = true;
+                    if (General.LastUrl == "http://localhost:51010/Login.aspx")
+                    {
+                        string UserID = User.Identity.GetUserId();
+                        General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
+                        lblSuccesAlert.Text = "Giriş <strong>Başarılı</strong>. Merhaba <strong>" + General.ActiveUser.Name + " " + General.ActiveUser.SurName+"</strong>";
+                        SuccesAlertDiv.Visible = true;
+                    }
                 }
                 else
                 {
