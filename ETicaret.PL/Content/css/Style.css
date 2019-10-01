@@ -1,21 +1,21 @@
-﻿#dropdownMenuLinkProfile.dropdown-toggle::after {
-    display: none;
-    width:0px;
-    vertical-align: .255em;
-    content: "";
-    border-top: .3em solid transparent;
-    border-right: 0;
-    border-bottom: .3em solid transparent;
-    border-left: .3em solid;
-}
-
-#dropdownMenuLinkProfile {
+﻿
+#dropdownMenuMasterProfile {
     border-color: darkgreen;
 }
 
 #SiteMasterProfileImg {
     height: 50px;
-    width:50px;
+    width: 50px;
+}
+
+#SepetIconMaster {
+    height: 32px;
+    width: 32px;
+}
+
+#LogoMaster {
+    height: 100px;
+    width: 325px;
 }
 
 .text-beyaz {
@@ -27,9 +27,7 @@
 }
 
 #headermasterdark {
-    background: #16222A;
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-    background: linear-gradient(59deg, #3A6073, #16222A);
     color: white;
 }
 
@@ -171,9 +169,21 @@ ul.social-network {
     background-attachment: fixed;
     height: 100%;
 }
+
 #RegisterBody {
     background: -webkit-linear-gradient( #16222A,black,darkgreen);
     background-attachment: fixed;
     height: 100%;
 }
+#NavbarUl {
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    min-height:450px;
+    height:100%;
+}
 
+#FilterNavMaster {
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+}
+#AccordionNavMaster {
+    background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+}

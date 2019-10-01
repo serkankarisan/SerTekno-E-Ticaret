@@ -20,7 +20,7 @@ namespace ETicaret.PL
                     {
                         string UserID = User.Identity.GetUserId();
                         General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
-                        lblSuccesAlert.Text = "Giriş <strong>Başarılı</strong>. Merhaba <strong>" + General.ActiveUser.Name + " " + General.ActiveUser.SurName+"</strong>";
+                        lblSuccesAlert.Text = "<strong>Giriş Başarılı</strong>. Merhaba <strong>" + General.ActiveUser.Name + " " + General.ActiveUser.SurName+"</strong>";
                         SuccesAlertDiv.Visible = true;
                     }
                 }

@@ -18,7 +18,7 @@ namespace ETicaret.PL
                     string UserID = HttpContext.Current.User.Identity.GetUserId();
                     General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
                     SiteMasterProfileImg.ImageUrl = General.ActiveUser.ProfileImage;
-                    lblUsername.Text = General.ActiveUser.Name+"&nbsp;"+"<i class=\""+ "fa fa-angle-double-down" + "\"></i>&nbsp;";
+                    lblUsername.Text = General.ActiveUser.Name;
                     pnlKullanici.Visible = true;
                     pnlGirisYap.Visible = false;
             }
