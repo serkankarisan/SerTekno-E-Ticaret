@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ETicaret.Entity.Entity;
+using ETicaret.PL.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +22,7 @@ namespace ETicaret.PL
                     {
                         string UserID = User.Identity.GetUserId();
                         General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
-                        lblSuccesAlert.Text = "<strong>Giriş Başarılı</strong>. Merhaba <strong>" + General.ActiveUser.Name + " " + General.ActiveUser.SurName+"</strong>";
+                        lblSuccesAlert.Text = "<strong>Giriş Başarılı</strong>. Merhaba <strong>" + General.ActiveUser.Name + " " + General.ActiveUser.SurName + "</strong>";
                         SuccesAlertDiv.Visible = true;
                     }
                 }
@@ -29,6 +31,11 @@ namespace ETicaret.PL
                     SuccesAlertDiv.Visible = false;
                 }
             }
+            List<ProductViewModel> ProductViewList = General.ProductListToProductViewList(General.Service.Product.Select());
+            lvProduct.DataSource = ProductViewList;
+            lvProduct.DataBind();
+            lvProductSmall.DataSource = ProductViewList;
+            lvProductSmall.DataBind();
         }
     }
 }
