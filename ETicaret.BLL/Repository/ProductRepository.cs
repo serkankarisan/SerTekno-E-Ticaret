@@ -9,5 +9,9 @@ namespace ETicaret.BLL.Repository
 {
     public class ProductRepository:BaseRepository<Product>
     {
+        public Product SelectByProductCode(string ProductCode)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.ProductCode.ToLower() == ProductCode.ToLower());
+        }
     }
 }

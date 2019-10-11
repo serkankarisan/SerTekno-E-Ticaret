@@ -21,24 +21,39 @@ namespace ETicaret.PL
             foreach (Product product in ProductList)
             {
                 ProductViewModel productView = new ProductViewModel();
+                productView.Id = product.Id;
                 productView.CriticalStockCount = product.CriticalStockCount;
                 productView.Decription = product.Decription;
                 productView.DislikeCount = product.DislikeCount;
                 productView.LikeCount = product.LikeCount;
-                productView.ModelName = product.Model.ModelName;
+                productView.ModelName = General.Service.Model.SelectById(product.ModelId).ModelName;
                 productView.Origin = product.Origin;
                 productView.Price = product.Price;
                 productView.ProductCode = product.ProductCode;
-                productView.ProductCommentsCount = product.ProductComments.Count();
-                productView.ProductCoverImages = product.ProductImages.Where(p => p.ImageType == "Cover").Select(p => p.ImagesPath).FirstOrDefault();
+                productView.ProductCommentsCount = General.Service.ProductComment.ListByProductId(product.Id).Count();
+                productView.ProductCoverImages = General.Service.ProductImage.Select().Where(p => p.ImageType == "Cover" && p.ProductId==product.Id).Select(p => p.ImagesPath).FirstOrDefault();
                 productView.ProductName = product.ProductName;
                 productView.Properties = product.Properties;
                 productView.StockCount = product.StockCount;
-                productView.SubCategoryName = product.SubCategory.SubCategoryName;
+                productView.SubCategoryName =General.Service.SubCategory.SelectById(product.SubCategoryId).SubCategoryName;
                 productView.WarrantyYearCount = product.WarrantyYearCount;
+                productView.CategoryName = General.Service.Category.SelectById(General.Service.SubCategory.SelectById(product.SubCategoryId).CategoryId).CategoryName;
+                productView.BrandName = General.Service.Brand.SelectById(General.Service.Model.SelectById(product.ModelId).BrandId).BrandName;
                 ProductViewList.Add(productView);
             }
             return ProductViewList;
+        }
+        public static List<BrandViewModel> BrandListToBrandViewList(List<Brand> BrandList)
+        {
+            List<BrandViewModel> BrandViewList = new List<BrandViewModel>();
+            foreach (Brand brand in BrandList)
+            {
+                BrandViewModel brandView = new BrandViewModel();
+                brandView.BrandName = brand.BrandName;
+                brandView.ModelCount = General.Service.Model.ListByBrandId(brand.Id).Count();
+                BrandViewList.Add(brandView);
+            }
+            return BrandViewList;
         }
     }
 }

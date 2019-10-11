@@ -9,5 +9,14 @@ namespace ETicaret.BLL.Repository
 {
     public class CategoryRepository:BaseRepository<Category>
     {
+        public bool ControlByCategoryName(string CategoryName)
+        {
+            bool result = false;
+            if (_dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.CategoryName.ToLower() == CategoryName.ToLower()) != null)
+            {
+                result = true;
+            }
+            return result;
+        }
     }
 }

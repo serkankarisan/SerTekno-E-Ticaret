@@ -13,20 +13,29 @@ namespace ETicaret.PL
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (General.LastUrl != "")
+                {
+                    string lastUrl = General.LastUrl;
+                    General.LastUrl = Request.Url.ToString();
+                    Response.Redirect(lastUrl);
+                }
+                else
+                {
+                    General.LastUrl = "http://localhost:51010/Login.aspx";
+                    Response.Redirect("Default.aspx");
+                }
+            }
             if (!Page.IsPostBack)
             {
-                if (Request.QueryString["UserName"]!=null)
+                if (Request.QueryString["UserName"] != null)
                 {
-                    lblRegSucces.Text= "Kayıt <strong>Başarılı</strong>.Giriş yaparak devam edebilirsin!";
+                    lblRegSucces.Text = "Kayıt <strong>Başarılı</strong>.Giriş yaparak devam edebilirsin!";
                     pnlAlertSuccesRegister.Visible = true;
                     txtUsername.Text = Request.QueryString["UserName"];
                     txtPassword.Focus();
                 }
-            }
-            if (User.Identity.IsAuthenticated)
-            {
-                General.LastUrl = "http://localhost:51010/Login.aspx";
-                Response.Redirect("Default.aspx");
             }
         }
         protected void SignIn(object sender, EventArgs e)
@@ -39,8 +48,17 @@ namespace ETicaret.PL
                 var userIdentity = General.Service.UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 bool RememberMe = cbxRememberMe.Checked;
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = RememberMe }, userIdentity);
-                General.LastUrl = "http://localhost:51010/Login.aspx";
-                Response.Redirect("~/Default.aspx");
+                if (General.LastUrl != "")
+                {
+                    string lastUrl = General.LastUrl;
+                    General.LastUrl = Request.Url.ToString();
+                    Response.Redirect(lastUrl);
+                }
+                else
+                {
+                    General.LastUrl = "http://localhost:51010/Login.aspx";
+                    Response.Redirect("Default.aspx");
+                }
             }
             else
             {
@@ -49,6 +67,6 @@ namespace ETicaret.PL
             }
         }
 
-       
+
     }
 }

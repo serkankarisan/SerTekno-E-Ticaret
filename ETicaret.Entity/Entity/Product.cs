@@ -67,6 +67,12 @@ namespace ETicaret.Entity.Entity
         public virtual List<ProductImage> ProductImages { get; set; }
         public virtual List<ProductComment> ProductComments { get; set; }
 
-
+        public Product()
+        {
+            LikeCount = 0;
+            DislikeCount = 0;
+            WarrantyYearCount = 2;
+            ProductCode = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+        }
     }
 }

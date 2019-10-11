@@ -9,5 +9,9 @@ namespace ETicaret.BLL.Repository
 {
      public class ProductCommentRepository:BaseRepository<ProductComment>
     {
+        public List<ProductComment> ListByProductId(int ProductID)
+        {
+            return _dbSet.Where(w => w.IsActive == true && w.ProductId==ProductID).ToList();
+        }
     }
 }
