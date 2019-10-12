@@ -66,6 +66,8 @@ namespace ETicaret.PL
 
         protected void btnKaydet_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             if (FileUploadCoverImage.HasFile)
             {
                 try
@@ -115,6 +117,8 @@ namespace ETicaret.PL
 
         protected void btnModalBrandSave_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             Brand br = new Brand();
             br.BrandName = txtModalBrand.Text.Trim();
             if (!General.Service.Brand.ControlByBrandName(br.BrandName))
@@ -160,6 +164,8 @@ namespace ETicaret.PL
 
         protected void btnModalModelSave_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             Model mdl = new Model();
             mdl.ModelName = txtModalModel.Text.Trim();
             mdl.BrandId = Convert.ToInt32(ddlModalModelBrand.SelectedItem.Value);
@@ -208,6 +214,8 @@ namespace ETicaret.PL
 
         protected void ddlBrand_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             pnlAlertDiv.Visible = false;
             ddlModel.DataSource = General.Service.Model.ListByBrandId(Convert.ToInt32(ddlBrand.SelectedItem.Value));
             ddlModel.DataValueField = "Id";
@@ -217,6 +225,8 @@ namespace ETicaret.PL
 
         protected void btnModalCategorySave_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             Category c = new Category();
             c.CategoryName = txtModalCategory.Text.Trim();
             if (!General.Service.Category.ControlByCategoryName(c.CategoryName))
@@ -263,6 +273,8 @@ namespace ETicaret.PL
 
         protected void btnModalSubCategorySave_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             SubCategory sc = new SubCategory();
             sc.SubCategoryName = txtModalSubCategory.Text.Trim();
             sc.CategoryId = Convert.ToInt32(ddlModalSubCategoryCategory.SelectedItem.Value);
@@ -311,6 +323,8 @@ namespace ETicaret.PL
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             pnlAlertDiv.Visible = false;
             ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
             ddlSubCategory.DataValueField = "Id";
@@ -320,6 +334,8 @@ namespace ETicaret.PL
 
         protected void btnSelectedDelete_Click(object sender, EventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             bool selected = false;
             foreach (GridViewRow row in gvProduct.Rows)
             {
@@ -348,6 +364,7 @@ namespace ETicaret.PL
 
         protected void gvProduct_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
             gvProduct.EditIndex = e.NewEditIndex;
             gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
             gvProduct.DataBind();
@@ -355,6 +372,7 @@ namespace ETicaret.PL
 
         protected void gvProduct_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
             gvProduct.EditIndex = -1;
             gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
             gvProduct.DataBind();
@@ -362,15 +380,56 @@ namespace ETicaret.PL
 
         protected void gvProduct_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            int ID = Convert.ToInt32(gvProduct.DataKeys[e.RowIndex].Value);
+            TextBox ProductName = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtProductNameEdit");
+            TextBox Origin = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtOriginEdit");
+            TextBox WarrantyYearCount = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtWarrantyYearCountEdit");
+            TextBox StockCount = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtStockCountEdit");
+            TextBox CriticalStockCount = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtCriticalStockCountEdit");
+            TextBox Price = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtPriceEdit");
+            var UpdatePro = General.Service.Product.SelectById(ID);
+            UpdatePro.ProductName = ProductName.Text.Trim() ;
+            UpdatePro.Origin = Origin.Text.Trim();
+            UpdatePro.WarrantyYearCount =Convert.ToInt32(WarrantyYearCount.Text.Trim());
+            UpdatePro.StockCount = Convert.ToInt32(StockCount.Text.Trim());
+            UpdatePro.CriticalStockCount = Convert.ToInt32(CriticalStockCount.Text.Trim());
+            if (Price.Text.Trim().Contains('.'))
+            {
+                string[] priceConv = Price.Text.Trim().Split('.');
+                string p = priceConv[0] + "," + priceConv[1];
+                UpdatePro.Price = Convert.ToDecimal(p);
+            }
+            else
+            {
+                UpdatePro.Price = Convert.ToDecimal(Price.Text.Trim());
+            }
+            try
+            {
+                General.Service.Product.Update(UpdatePro);
+                gvProduct.EditIndex = -1;
+                pnlAlertDivAccordionEdit.CssClass = "alert alert-success alert-dismissible text-center";
+                lblAlertDivAccordionEdit.Text = "<strong>İşlem Başarılı</strong>. Ürün Başarıyla Güncellendi.";
+                pnlAlertDivAccordionEdit.Visible = true;
+                gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
+                gvProduct.DataBind();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
 
         protected void gvProduct_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            pnlAlertDivAccordionEdit.Visible = false;
+            gvProduct.EditIndex = -1;
             int ID = Convert.ToInt32(gvProduct.DataKeys[e.RowIndex].Value);
             General.Service.Product.Delete(ID);
             gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
             gvProduct.DataBind();
         }
+
     }
 }

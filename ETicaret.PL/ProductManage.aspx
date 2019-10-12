@@ -18,14 +18,14 @@
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <asp:Label ID="lblAlertDivAccordionEdit" runat="server" Text=""></asp:Label>
                         </asp:Panel>
-                        <asp:GridView CssClass="table table-responsive table-striped" runat="server" OnRowDeleting="gvProduct_RowDeleting" OnRowEditing="gvProduct_RowEditing" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowUpdating="gvProduct_RowUpdating" AutoGenerateColumns="False" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" ID="gvProduct" ShowFooter="True" AllowPaging="True" DataKeyNames="Id">
+                        <asp:GridView CssClass="table table-responsive table-striped" runat="server" OnRowDeleting="gvProduct_RowDeleting" OnRowEditing="gvProduct_RowEditing" OnRowCancelingEdit="gvProduct_RowCancelingEdit" OnRowUpdating="gvProduct_RowUpdating" AutoGenerateColumns="False" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="1px" CellPadding="1" GridLines="Horizontal" ID="gvProduct" ShowFooter="True" AllowPaging="True" DataKeyNames="Id">
                             <Columns>
                                 <asp:TemplateField>
                                     <HeaderTemplate>
                                         <asp:CheckBox ID="cbxAllDelete" runat="server" Text="Hepsini Seç" />
                                     </HeaderTemplate>
                                     <FooterTemplate>
-                                        <button id="btnDeleteModal" type="button" class="btn btn-outline-danger pt-0 pb-0" data-toggle="modal" data-target="#DeleteConfirmModal" style="width: 125px;">Seçilenleri Sil</button>
+                                        <button id="btnDeleteModal" type="button" class="btn btn-outline-danger pt-0 pb-0" data-toggle="modal" data-target="#DeleteConfirmModal" style="width: 100px;">Seçilenleri Sil</button>
                                         <asp:Panel ID="pnlDeleteConfirm" runat="server" DefaultButton="btnModalDelete">
                                             <!-- DeleteConfirmModal -->
                                             <div class="modal fade" id="DeleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="DeleteConfirmModalLabel" aria-hidden="true">
@@ -54,23 +54,106 @@
                                         <asp:CheckBox ID="cbxSelectDelete" runat="server" Text="&nbsp;Seç" />
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
-                                    <HeaderStyle Width="130px" />
+                                    <HeaderStyle />
                                 </asp:TemplateField>
-                                <asp:BoundField DataField="ProductName" HeaderText="Ürün Adı" />
-                                <asp:BoundField DataField="BrandName" HeaderText="Marka" />
-                                <asp:BoundField DataField="ModelName" HeaderText="Model" />
-                                <asp:BoundField DataField="Origin" HeaderText="Menşei" />
-                                <asp:BoundField DataField="WarrantyYearCount" HeaderText="Garanti Süresi" />
-                                <asp:BoundField DataField="StockCount" HeaderText="Stok Miktarı" />
-                                <asp:BoundField DataField="CriticalStockCount" HeaderText="Kritik Seviye" />
-                                <asp:BoundField DataField="Price" HeaderText="Fiyat" />
-                                <asp:BoundField DataField="CategoryName" HeaderText="Kategori" />
-                                <asp:BoundField DataField="SubCategoryName" HeaderText="Alt Kategori" />
-                                <asp:BoundField DataField="ProductCode" HeaderText="Ürün Kodu" />
+                                <asp:TemplateField HeaderText="Ürün Adı">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtProductNameEdit" runat="server" Text='<%# Bind("ProductName") %>'></asp:TextBox><br />
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductNameEdit" runat="server" ErrorMessage="Ürün Adı girmelisiniz!" ControlToValidate="txtProductNameEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblProductNameEdit" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Marka">
+                                    <EditItemTemplate>
+                                        <asp:Label ID="lblBrandNameEdit" runat="server" Text='<%# Bind("BrandName") %>'></asp:Label>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblBrandNameEdit" runat="server" Text='<%# Bind("BrandName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Model">
+                                    <EditItemTemplate>
+                                        <asp:Label ID="lblModelNameEdit" runat="server" Text='<%# Bind("ModelName") %>'></asp:Label>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblModelNameEdit" runat="server" Text='<%# Bind("ModelName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Menşei">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtOriginEdit" runat="server" Text='<%# Bind("Origin") %>' Width="60"></asp:TextBox><br />
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorOriginEdit" runat="server" ErrorMessage="Menşei girmelisiniz!" ControlToValidate="txtOriginEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblOriginEdit" runat="server" Text='<%# Bind("Origin") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Garanti Süresi">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtWarrantyYearCountEdit" runat="server" Text='<%# Bind("WarrantyYearCount") %>' Width="30"></asp:TextBox><br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorWarrantyYearCountEdit" runat="server" ErrorMessage="Garanti süresi girmelisiniz!" ControlToValidate="txtWarrantyYearCountEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblWarrantyYearCountEdit" runat="server" Text='<%# Bind("WarrantyYearCount") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Stok Miktarı">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtStockCountEdit" runat="server" Text='<%# Bind("StockCount") %>' Width="100"></asp:TextBox><br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorStockCountEdit" runat="server" ErrorMessage="Stok girmelisiniz!" ControlToValidate="txtStockCountEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblStockCountEdit" runat="server" Text='<%# Bind("StockCount") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Kritik Stok">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtCriticalStockCountEdit" runat="server" Text='<%# Bind("CriticalStockCount") %>' Width="100"></asp:TextBox><br />
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorCriticalStockCountEdit" runat="server" ErrorMessage="Kritik stok girmelisiniz!" ControlToValidate="txtCriticalStockCountEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCriticalStockCountEdit" runat="server" Text='<%# Bind("CriticalStockCount") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Fiyat">
+                                    <EditItemTemplate>
+                                        <asp:TextBox ID="txtPriceEdit" runat="server" Text='<%# Bind("Price") %>' Width="100"></asp:TextBox><br />
+                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorPriceEdit" runat="server" ErrorMessage="Fiyat girmelisiniz!" ControlToValidate="txtPriceEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPriceEdit" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Kategori">
+                                    <EditItemTemplate>
+                                        <asp:Label ID="lblCategoryNameEdit" runat="server" Text='<%# Bind("CategoryName") %>'></asp:Label>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblCategoryNameEdit" runat="server" Text='<%# Bind("CategoryName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Alt Kategori">
+                                    <EditItemTemplate>
+                                        <asp:Label ID="lblSubCategoryNameEdit" runat="server" Text='<%# Bind("SubCategoryName") %>'></asp:Label>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblSubCategoryNameEdit" runat="server" Text='<%# Bind("SubCategoryName") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <%-- <asp:TemplateField HeaderText="Ürün Kodu">
+                                    <EditItemTemplate>
+                                       <asp:Label ID="lblProductCodeEdit" runat="server" Text='<%# Bind("ProductCode") %>'></asp:Label>
+                                    </EditItemTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblProductCodeEdit" runat="server" Text='<%# Bind("ProductCode") %>'></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>--%>
                                 <asp:TemplateField ShowHeader="False">
                                     <EditItemTemplate>
-                                        <asp:LinkButton ID="lbtnUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Değiştir"></asp:LinkButton>
-                                        &nbsp;<asp:LinkButton ID="lbtnCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Vazgeç"></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnUpdate" CssClass="btn btn-outline-primary pt-0 pb-0" runat="server" CausesValidation="True" CommandName="Update" Text="Değiştir" ValidationGroup="ProductEditValidate"></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnCancel" CssClass="btn btn-outline-secondary pt-0 pb-0" runat="server" CausesValidation="False" CommandName="Cancel" Text="Vazgeç"></asp:LinkButton>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnEdit" CssClass="btn btn-outline-warning pt-0 pb-0" runat="server" CausesValidation="False" CommandName="Edit" Text="Düzenle"></asp:LinkButton>
@@ -217,7 +300,7 @@
             </Panes>
         </ajaxToolkit:Accordion>
     </div>
-    
+
     <asp:Panel ID="pnlBrandModal" runat="server" DefaultButton="btnModalBrandSave">
         <!-- BrandModal -->
         <div class="modal fade" id="BrandModal" tabindex="-1" role="dialog" aria-labelledby="BrandModalLabel" aria-hidden="true">
@@ -361,8 +444,8 @@
                     }
                 };
             });
-           
+
         });
-</script>
+    </script>
 </asp:Content>
 
