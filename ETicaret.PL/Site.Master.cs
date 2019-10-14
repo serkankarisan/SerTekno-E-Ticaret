@@ -15,12 +15,26 @@ namespace ETicaret.PL
         {
             if (Request.IsAuthenticated)
             {
-                    string UserID = HttpContext.Current.User.Identity.GetUserId();
-                    General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
-                    SiteMasterProfileImg.ImageUrl = General.ActiveUser.ProfileImage;
-                    lblUsername.Text = General.ActiveUser.Name;
-                    pnlKullanici.Visible = true;
-                    pnlGirisYap.Visible = false;
+                bool Admin=false;
+                string UserID = HttpContext.Current.User.Identity.GetUserId();
+                General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
+                List<AppRole> AdminRoles = General.Service.RoleManager.Roles.Where(r => r.Name == "Admin").ToList();
+                foreach (AppRole Role in AdminRoles)
+                {
+                    if (Role.Users.Where(ur => ur.UserId == UserID).FirstOrDefault() != null)
+                    {
+                        Admin = true;
+                    }
+                }
+                if (!Admin)
+                {
+                    lnkbtnAdminUserManage.Visible = false;
+                    lnkbtnAdminProductManage.Visible = false;
+                }
+                SiteMasterProfileImg.ImageUrl = General.ActiveUser.ProfileImage;
+                lblUsername.Text = General.ActiveUser.Name;
+                pnlKullanici.Visible = true;
+                pnlGirisYap.Visible = false;
             }
             else
             {

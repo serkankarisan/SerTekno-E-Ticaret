@@ -128,8 +128,11 @@
     <Content Include="Images\serteknoLogo.png" />
     <Content Include="Images\shopping-cart-32.ico" />
     <Content Include="Login.aspx" />
+    <Content Include="ProductDetails.aspx" />
+    <Content Include="ProductDetailsAdmin.aspx" />
     <Content Include="ProductManage.aspx" />
     <Content Include="Register.aspx" />
+    <Content Include="UserManage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +157,20 @@
     <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="ProductDetails.aspx.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductDetails.aspx.designer.cs">
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProductDetailsAdmin.aspx.cs">
+      <DependentUpon>ProductDetailsAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductDetailsAdmin.aspx.designer.cs">
+      <DependentUpon>ProductDetailsAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProductManage.aspx.cs">
       <DependentUpon>ProductManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +194,13 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="UserManage.aspx.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManage.aspx.designer.cs">
+      <DependentUpon>UserManage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\bootstrap-grid.css.map" />

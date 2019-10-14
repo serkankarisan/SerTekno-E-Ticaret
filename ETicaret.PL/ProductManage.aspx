@@ -165,6 +165,12 @@
                                     </ItemTemplate>
                                     <ItemStyle />
                                 </asp:TemplateField>
+                                <asp:TemplateField ShowHeader="False">
+                                    <ItemTemplate>
+                                        <a id="lnkbtnDetail" class="btn btn-outline-info pt-0 pb-0" href='ProductDetails.aspx?ProductId=<%#Eval("Id")%>'>Detaylar</a>
+                                    </ItemTemplate>
+                                    <ItemStyle />
+                                </asp:TemplateField>
 
                             </Columns>
                             <FooterStyle BackColor="White" ForeColor="#333333" />

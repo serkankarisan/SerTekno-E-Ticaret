@@ -39,6 +39,12 @@
                                 <li class="nav-item">
                                     <a class="nav-link " href="#">Hakkımızda</a>
                                 </li>
+                                <li class="nav-item">
+                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminUserManage" runat="server" PostBackUrl="~/UserManage.aspx">Kullanıcı İşlemleri</asp:LinkButton>
+                                </li>
+                                <li class="nav-item">
+                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminProductManage" runat="server" PostBackUrl="~/ProductManage.aspx">Ürün İşlemleri</asp:LinkButton>
+                                </li>
                             </ul>
                             <div class="form-inline my-2 my-lg-0">
                                 <input id="AraTextboxMasterPage" class="form-control mr-sm-2" type="search" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search">
@@ -60,7 +66,7 @@
 
                     <div class="btn-group dropdown">
                         <button id="dropdownMenuMasterProfile" type="button" class="btn btn-light dropdown-toggle row" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div style="display: inline-block;min-width:150px;" class="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto h5 pr-1">
+                            <div style="display: inline-block; min-width: 150px;" class="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto h5 pr-1">
                                 <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
                             </div>
                             <div style="display: inline-block" class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 text-left pl-0 pr-2 pt-1">

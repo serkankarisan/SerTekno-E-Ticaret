@@ -38,23 +38,32 @@ namespace ETicaret.PL
                     user.SurName = txtSurName.Text.Trim();
                     user.PhoneNumber = txtPhoneNumber.Text.Trim();
                     user.ProfileImage = "Images/profile-icon-png-917.png";
-                    if (General.Service.RoleManager.Roles.Where(r => r.Name == "User").FirstOrDefault() != null)
-                    {
-                        AppRole Rol = General.Service.RoleManager.Roles.Where(r => r.Name == "User").FirstOrDefault();
-                        General.Service.UserManager.AddToRole(user.Id, "User");
-                    }
                     //user.PhoneNumberConfirmed = true;
                     //user.EmailConfirmed = true;
 
                     IdentityResult result = General.Service.UserManager.Create(user, txtPassword.Text.Trim());
                     if (result.Succeeded)
                     {
+                        if (General.Service.RoleManager.FindByName("User") != null)
+                        {
+                            AppRole Rol = General.Service.RoleManager.FindByName("User");
+                            var currentUser = General.Service.UserManager.FindByName(user.UserName);
+                            General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                        }
+                        else
+                        {
+                            AppRole appRole = new AppRole();
+                            appRole.Name = "User";
+                            General.Service.RoleManager.Create(appRole);
+                            var currentUser = General.Service.UserManager.FindByName(user.UserName);
+                            General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                        }
                         General.LastUrl = "http://localhost:51010/Register.aspx";
                         Response.Redirect("~/Login.aspx?UserName=" + user.UserName);
                     }
                     else
                     {
-                        string deneme = result.Errors.FirstOrDefault();
+                        string hata = result.Errors.FirstOrDefault();
                     }
                 }
                 else
