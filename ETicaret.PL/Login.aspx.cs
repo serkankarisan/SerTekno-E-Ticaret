@@ -48,6 +48,9 @@ namespace ETicaret.PL
                 var userIdentity = General.Service.UserManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 bool RememberMe = cbxRememberMe.Checked;
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = RememberMe }, userIdentity);
+                Session["basket"] = null;
+                Session["totalcount"] = null;
+                Session["totalamount"] = null;
                 if (General.LastUrl != "")
                 {
                     string lastUrl = General.LastUrl;

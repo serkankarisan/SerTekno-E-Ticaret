@@ -164,7 +164,7 @@
                             <asp:ListView ID="lvProduct" runat="server">
                                 <ItemTemplate>
                                     <div class="col-lg-4 col-xl-3 pt-3">
-                                        <a class="btn btn-light" href="#">
+                                        <a class="btn btn-light" href='ProductDetails.aspx?ProductId=<%#Eval("Id") %>'>
                                             <div class="container card border-success" style="height: 300px; width: 200px;">
                                                 <div class="row">
                                                     <div class="container-fluid text-center pt-2" style="min-height: 155px;">
@@ -224,7 +224,7 @@
                     <asp:ListView ID="lvProductSmall" runat="server">
                         <ItemTemplate>
                             <div class="col-6 col-sm-4 col-md-3 pt-3">
-                                <a class="btn btn-light" href="#">
+                                <a class="btn btn-light" href='ProductDetails.aspx?ProductId=<%#Eval("Id") %>'>
                                     <div class="container card border-success" style="height: 250px; width: 160px;">
                                         <div class="row">
                                             <div class="container-fluid text-center pt-2" style="min-height: 115px;">

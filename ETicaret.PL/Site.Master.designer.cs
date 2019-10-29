@@ -31,24 +31,6 @@ namespace ETicaret.PL {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// lnkbtnAdminUserManage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdminUserManage;
-        
-        /// <summary>
-        /// lnkbtnAdminProductManage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdminProductManage;
-        
-        /// <summary>
         /// pnlKullanici control.
         /// </summary>
         /// <remarks>
@@ -76,6 +58,24 @@ namespace ETicaret.PL {
         protected global::System.Web.UI.WebControls.Image SiteMasterProfileImg;
         
         /// <summary>
+        /// btnOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOrders;
+        
+        /// <summary>
+        /// btnProfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnProfile;
+        
+        /// <summary>
         /// btnSignOut control.
         /// </summary>
         /// <remarks>
@@ -92,6 +92,33 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlGirisYap;
+        
+        /// <summary>
+        /// lblBaketItemCount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBaketItemCount;
+        
+        /// <summary>
+        /// lnkbtnAdminUserManage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdminUserManage;
+        
+        /// <summary>
+        /// lnkbtnAdminProductManage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdminProductManage;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

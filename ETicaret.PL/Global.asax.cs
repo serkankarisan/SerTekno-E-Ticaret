@@ -49,7 +49,8 @@ namespace ETicaret.PL
         }
         protected void Session_Start(object sender, EventArgs e)
         {
-
+            decimal m = 1;
+            Session["MoneyChar"] = m.ToString("C").Replace("1", "").Replace("0", "").Replace(",", "").Replace(".", "");
         }
         protected void Session_End(object sender, EventArgs e)
         {

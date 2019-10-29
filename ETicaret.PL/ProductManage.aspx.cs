@@ -20,47 +20,46 @@ namespace ETicaret.PL
             }
             else
             {
+                if (!Page.IsPostBack)
+                {
+                    gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
+                    gvProduct.DataBind();
+                    ddlBrand.DataSource = General.Service.Brand.Select();
+                    ddlBrand.DataValueField = "Id";
+                    ddlBrand.DataTextField = "BrandName";
+                    ddlBrand.DataBind();
 
-            }
-            if (!Page.IsPostBack)
-            {
-                gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
-                gvProduct.DataBind();
-                ddlBrand.DataSource = General.Service.Brand.Select();
-                ddlBrand.DataValueField = "Id";
-                ddlBrand.DataTextField = "BrandName";
-                ddlBrand.DataBind();
+                    ddlModalModelBrand.DataSource = General.Service.Brand.Select();
+                    ddlModalModelBrand.DataValueField = "Id";
+                    ddlModalModelBrand.DataTextField = "BrandName";
+                    ddlModalModelBrand.DataBind();
 
-                ddlModalModelBrand.DataSource = General.Service.Brand.Select();
-                ddlModalModelBrand.DataValueField = "Id";
-                ddlModalModelBrand.DataTextField = "BrandName";
-                ddlModalModelBrand.DataBind();
+                    ddlModel.DataSource = General.Service.Model.ListByBrandId(Convert.ToInt32(ddlBrand.SelectedItem.Value));
+                    ddlModel.DataValueField = "Id";
+                    ddlModel.DataTextField = "ModelName";
+                    ddlModel.DataBind();
 
-                ddlModel.DataSource = General.Service.Model.ListByBrandId(Convert.ToInt32(ddlBrand.SelectedItem.Value));
-                ddlModel.DataValueField = "Id";
-                ddlModel.DataTextField = "ModelName";
-                ddlModel.DataBind();
+                    ddlCategory.DataSource = General.Service.Category.Select();
+                    ddlCategory.DataValueField = "Id";
+                    ddlCategory.DataTextField = "CategoryName";
+                    ddlCategory.DataBind();
 
-                ddlCategory.DataSource = General.Service.Category.Select();
-                ddlCategory.DataValueField = "Id";
-                ddlCategory.DataTextField = "CategoryName";
-                ddlCategory.DataBind();
+                    ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
+                    ddlModalSubCategoryCategory.DataValueField = "Id";
+                    ddlModalSubCategoryCategory.DataTextField = "CategoryName";
+                    ddlModalSubCategoryCategory.DataBind();
 
-                ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
-                ddlModalSubCategoryCategory.DataValueField = "Id";
-                ddlModalSubCategoryCategory.DataTextField = "CategoryName";
-                ddlModalSubCategoryCategory.DataBind();
-
-                ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
-                ddlSubCategory.DataValueField = "Id";
-                ddlSubCategory.DataTextField = "SubCategoryName";
-                ddlSubCategory.DataBind();
-            }
-            if (General.LastUrl == Request.Url.ToString())
-            {
-                pnlAlertDivAccordionEdit.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                lblAlertDivAccordionEdit.Text = "<strong>Kayıt Başarılı</strong>. Ürün Başarıyla Kaydedildi.";
-                pnlAlertDivAccordionEdit.Visible = true;
+                    ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
+                    ddlSubCategory.DataValueField = "Id";
+                    ddlSubCategory.DataTextField = "SubCategoryName";
+                    ddlSubCategory.DataBind();
+                }
+                if (General.LastUrl == Request.Url.ToString())
+                {
+                    pnlAlertDivAccordionEdit.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDivAccordionEdit.Text = "<strong>Kayıt Başarılı</strong>. Ürün Başarıyla Kaydedildi.";
+                    pnlAlertDivAccordionEdit.Visible = true;
+                }
             }
         }
 
@@ -72,7 +71,7 @@ namespace ETicaret.PL
             {
                 try
                 {
-                    string filename = Path.GetFileName(FileUploadCoverImage.FileName);
+                    string filename = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace(":", "") + DateTime.Now.Millisecond.ToString() + "_" + Path.GetFileName(FileUploadCoverImage.FileName);
                     if (filename != "")
                     {
                         FileUploadCoverImage.SaveAs(Server.MapPath("~/Images/") + filename);
@@ -344,6 +343,10 @@ namespace ETicaret.PL
                 {
                     selected = true;
                     int ID = Convert.ToInt32(gvProduct.DataKeys[row.RowIndex].Value);
+                    foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+                    {
+                        File.Delete(MapPath(img.ImagesPath));
+                    }
                     General.Service.Product.Delete(ID);
                 }
             }
@@ -389,21 +392,12 @@ namespace ETicaret.PL
             TextBox CriticalStockCount = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtCriticalStockCountEdit");
             TextBox Price = (TextBox)gvProduct.Rows[e.RowIndex].FindControl("txtPriceEdit");
             var UpdatePro = General.Service.Product.SelectById(ID);
-            UpdatePro.ProductName = ProductName.Text.Trim() ;
+            UpdatePro.ProductName = ProductName.Text.Trim();
             UpdatePro.Origin = Origin.Text.Trim();
-            UpdatePro.WarrantyYearCount =Convert.ToInt32(WarrantyYearCount.Text.Trim());
+            UpdatePro.WarrantyYearCount = Convert.ToInt32(WarrantyYearCount.Text.Trim());
             UpdatePro.StockCount = Convert.ToInt32(StockCount.Text.Trim());
             UpdatePro.CriticalStockCount = Convert.ToInt32(CriticalStockCount.Text.Trim());
-            if (Price.Text.Trim().Contains('.'))
-            {
-                string[] priceConv = Price.Text.Trim().Split('.');
-                string p = priceConv[0] + "," + priceConv[1];
-                UpdatePro.Price = Convert.ToDecimal(p);
-            }
-            else
-            {
-                UpdatePro.Price = Convert.ToDecimal(Price.Text.Trim());
-            }
+            UpdatePro.Price = Convert.ToDecimal(Price.Text.Trim().Replace(".", ","));
             try
             {
                 General.Service.Product.Update(UpdatePro);
@@ -426,7 +420,14 @@ namespace ETicaret.PL
             pnlAlertDivAccordionEdit.Visible = false;
             gvProduct.EditIndex = -1;
             int ID = Convert.ToInt32(gvProduct.DataKeys[e.RowIndex].Value);
+            foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+            {
+                File.Delete(MapPath(img.ImagesPath));
+            }
             General.Service.Product.Delete(ID);
+            pnlAlertDivAccordionEdit.CssClass = "alert alert-warning alert-dismissible text-center";
+            lblAlertDivAccordionEdit.Text = "<strong>İşlem Başarılı</strong>. Ürün Başarıyla Silindi.";
+            pnlAlertDivAccordionEdit.Visible = true;
             gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
             gvProduct.DataBind();
         }

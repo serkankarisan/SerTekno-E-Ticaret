@@ -81,7 +81,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblAdressList" runat="server" Text='<%# Bind("Adress") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle CssClass="wordwrap" Width="250px"/>
+                                    <ItemStyle CssClass="wordwrap minwidthAdress" Width="250px"/>
                                 </asp:TemplateField>
                                 <%-- <asp:TemplateField HeaderText="Posta Kodu">
                                     <ItemTemplate>

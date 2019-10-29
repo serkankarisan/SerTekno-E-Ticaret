@@ -18,9 +18,60 @@
     <form id="form1" runat="server">
         <div class="container-fluid">
             <!-- Header -->
-            <div id="headermasterdark" class="row jumbotron-fluid">
+            <div class="row DarkBg pt-3 fixed-top pb-2">
+                <div id="slogan" class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-5 text-center">
+                    <div class="h2 text-success">
+                        Alışveriş İçin Yanan Yeşil Işık 
+                    </div>
+                    <hr>
+                </div>
+                <asp:Panel ID="pnlKullanici" runat="server" CssClass="col-8 col-sm-9 col-md-6 col-lg-4 col-xl-5 text-center text-sm-center text-md-right text-lg-right text-xl-right " Visible="False">
+
+                    <div class="btn-group dropdown">
+                        <button id="dropdownMenuMasterProfile" type="button" class="btn btn-outline-light dropdown-toggle row" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div style="display: inline-block; min-width: 150px;" class="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto h5 pr-1">
+                                <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                            </div>
+                            <div style="display: inline-block" class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-left pl-0 pr-2 pt-1">
+                                <asp:Image ID="SiteMasterProfileImg" runat="server" CssClass="rounded-circle" alt="ProfilResmi" />
+                            </div>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-item">
+                                <asp:Button ID="btnOrders" runat="server" Text="Siparişlerim" CssClass="btn btn-light" PostBackUrl="" />
+                                <label for="btnOrders" class="btn btn-light mb-0"><i class="fa fa-shopping-bag" aria-hidden="true"></i></label>
+                            </div>
+                            <div class="dropdown-item">
+                                <asp:Button ID="btnProfile" runat="server" Text="Sayfam" CssClass="btn btn-light" PostBackUrl="" />
+                                <label for="btnProfile" class="btn btn-light mb-0"><i class="fa fa-user-circle" aria-hidden="true"></i></label>
+                            </div>
+                            <div class="dropdown-item">
+                                <asp:Button ID="btnSignOut" runat="server" Text="Çıkış Yap" CssClass="btn btn-light" OnClick="SignOut" />
+                                <label for="btnSignOut" class="btn btn-light mb-0"><i class="fa fa-sign-out" aria-hidden="true"></i></label>
+                            </div>
+                        </div>
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="pnlGirisYap" runat="server" CssClass="col-8 col-sm-8 col-md-5 col-lg-5 col-xl-5 text-right pt-2" Visible="True">
+                    <a href="Login.aspx" class="btn btn-outline-success btn-lg mw-100">Giriş Yap</a>
+                    <a href="Register.aspx" class="btn btn-outline-info btn-lg mw-100">Kayıt Ol</a>
+                </asp:Panel>
+                <div id="sepet" class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 text-center text-sm-center text-md-center text-lg-center text-xl-right  pt-1">
+                    <a href="#" class="btn">
+                        <div style="display: inline-block;">
+                            <img id="SepetIconMaster" alt="sepet" src="Images/shopping-cart-32.ico" class="mw-100">
+                        </div>
+                        <div style="display: inline-block;">
+                            <asp:Label CssClass="badge badge-pill badge-success" ID="lblBaketItemCount" runat="server" Text="0"></asp:Label>
+                        </div>
+                    </a>
+                </div>
+                <hr />
+            </div>
+
+            <div id="headermasterdark" class="row jumbotron-fluid BlueLightBg mb-1">
                 <div id="navbardiv" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -30,73 +81,31 @@
 
                         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="Default.aspx">AnaSayfa <span class="sr-only">(current)</span></a>
+                                <li id="NavDefault" class="nav-item">
+                                    <a class="nav-link active" href="Default.aspx"><span class="h5">AnaSayfa</span></a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">İletişim</a>
+                                <li id="NavContact" class="nav-item">
+                                    <a class="nav-link" href="Contact.aspx"><span class="h5">İletişim</span> </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link " href="#">Hakkımızda</a>
+                                <li id="NavAbout" class="nav-item">
+                                    <a class="nav-link " href="About.aspx"><span class="h5">Hakkımızda</span> </a>
                                 </li>
-                                <li class="nav-item">
-                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminUserManage" runat="server" PostBackUrl="~/UserManage.aspx">Kullanıcı İşlemleri</asp:LinkButton>
+                                <li id="NavUser" class="nav-item">
+                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminUserManage" runat="server" PostBackUrl="~/UserManage.aspx"><span class="h5">Kullanıcı İşlemleri</span> </asp:LinkButton>
                                 </li>
-                                <li class="nav-item">
-                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminProductManage" runat="server" PostBackUrl="~/ProductManage.aspx">Ürün İşlemleri</asp:LinkButton>
+                                <li id="NavProduct" class="nav-item">
+                                    <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminProductManage" runat="server" PostBackUrl="~/ProductManage.aspx"><span class="h5">Ürün İşlemleri</span> </asp:LinkButton>
                                 </li>
                             </ul>
                             <div class="form-inline my-2 my-lg-0">
                                 <input id="AraTextboxMasterPage" class="form-control mr-sm-2" type="search" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Ara</button>
+                                <button class="btn btn-outline-success my-2 my-sm-0 text-siyah" type="submit">Ara</button>
                             </div>
                         </div>
                     </nav>
                 </div>
             </div>
-            <hr />
-            <div class="row bg-light">
-                <div id="slogan" class="col-12 col-sm-12 col-md-4 col-lg-6 col-xl-6 text-center">
-                    <div class="h2 text-success">
-                        Alışveriş İçin Yanan Yeşil Işık 
-                    </div>
-                    <hr>
-                </div>
-                <asp:Panel ID="pnlKullanici" runat="server" CssClass="col-8 col-sm-9 col-md-6 col-lg-4 col-xl-5 text-center text-sm-center text-md-right text-lg-right text-xl-right " Visible="False">
-
-                    <div class="btn-group dropdown">
-                        <button id="dropdownMenuMasterProfile" type="button" class="btn btn-light dropdown-toggle row" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div style="display: inline-block; min-width: 150px;" class="col-auto col-sm-auto col-md-auto col-lg-auto col-xl-auto h5 pr-1">
-                                <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
-                            </div>
-                            <div style="display: inline-block" class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 text-left pl-0 pr-2 pt-1">
-                                <asp:Image ID="SiteMasterProfileImg" runat="server" CssClass="rounded-circle" alt="ProfilResmi" />
-                            </div>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Siparişlerim</a>
-                            <a class="dropdown-item" href="#">Kullanıcı İşlemleri</a>
-                            <asp:Button ID="btnSignOut" runat="server" Text="Çıkış Yap" CssClass="dropdown-item" OnClick="SignOut" />
-                        </div>
-                    </div>
-                </asp:Panel>
-                <asp:Panel ID="pnlGirisYap" runat="server" CssClass="col-8 col-sm-8 col-md-5 col-lg-5 col-xl-5 text-right pt-2" Visible="True">
-                    <a href="Login.aspx" class="btn btn-outline-success btn-lg mw-100">Giriş Yap</a>
-                    <a href="Register.aspx" class="btn btn-outline-info btn-lg mw-100">Kayıt Ol</a>
-                </asp:Panel>
-                <div id="sepet" class="col-4 col-sm-2 col-md-2 col-lg-2 col-xl-1 text-center text-sm-center text-md-center text-lg-center text-xl-right  pt-3">
-                    <a href="#" class="btn">
-                        <div style="display: inline-block;">
-                            <img id="SepetIconMaster" alt="sepet" src="Images/shopping-cart-32.ico" class="mw-100">
-                        </div>
-                        <div style="display: inline-block;">
-                            <span class="badge badge-pill badge-success">1</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
             <!-- Header End -->
-            <hr />
             <!-- Content -->
             <div id="content" class="row">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -143,6 +152,28 @@
             <!-- Footer End-->
         </div>
     </form>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = window.location.pathname;
+            console.log(url);
+            $('.nav-link').removeClass('active');
+            if (url === "/Default.aspx") {
+                $('#NavDefault').addClass('active');
+            }
+            else if (url === "/About.aspx") {
+                $('#NavAbout').addClass('active');
+            }
+            else if (url === "/Contact.aspx") {
+                $('#NavContact').addClass('active');
+            }
+            else if (url === "/ProductManage.aspx") {
+                $('#NavProduct').addClass('active');
+            }
+            else if (url === "/UserManage.aspx") {
+                $('#NavUser').addClass('active');
+            }
+        });
+    </script>
     <script src="Content/js/jquery-3.4.1.min.js"></script>
     <script src="Content/js/popper.min.js"></script>
     <script src="Content/js/bootstrap.min.js"></script>

@@ -22,12 +22,21 @@
     color: white;
 }
 
+.text-siyah {
+    color: black;
+}
+
 #footerlink {
     color: darkgreen;
 }
 
-#headermasterdark {
+.DarkBg {
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
+    color: white;
+}
+
+.BlueLightBg {
+    background: -webkit-linear-gradient(59deg,#528b8b, #c6e2ff, #fdf5e6);
     color: white;
 }
 
@@ -175,18 +184,120 @@ ul.social-network {
     background-attachment: fixed;
     height: 100%;
 }
+
 #NavbarUl {
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-    min-height:450px;
-    height:100%;
+    min-height: 450px;
+    height: 100%;
 }
 
 #FilterNavMaster {
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
 }
+
 #AccordionNavMaster {
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
 }
+
 .wordwrap {
     word-break: break-all;
+}
+
+#pnlCarouselInner {
+    height: 425px;
+}
+
+@media (max-width: 576px) {
+    #headermasterdark {
+        margin-top: 165px;
+    }
+}
+
+@media (min-width: 576px) and (max-width:665px ) {
+    #headermasterdark {
+        margin-top: 175px;
+    }
+}
+
+@media (min-width: 665px) and (max-width:768px ) {
+    #headermasterdark {
+        margin-top: 165px;
+    }
+}
+
+@media (min-width: 768px) and (max-width:992px ) {
+    #headermasterdark {
+        margin-top: 140px;
+    }
+}
+
+@media (min-width: 992px) and (max-width:1200px ) {
+    #headermasterdark {
+        margin-top: 150px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #headermasterdark {
+        margin-top: 95px;
+    }
+}
+
+.minwidthAdress {
+    min-width: 200px;
+}
+
+.DetailImgHeight {
+    height: 420px;
+}
+
+#prev-btn.carousel-control-prev-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid darkgreen;
+    background-image: none;
+}
+
+#next-btn.carousel-control-next-icon {
+    height: 100px;
+    width: 100px;
+    outline: black;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    border: 1px solid darkgreen;
+    background-image: none;
+}
+
+    #next-btn.carousel-control-next-icon:after {
+        content: '>';
+        font-size: 55px;
+        color: darkgreen;
+    }
+
+#prev-btn.carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 55px;
+    color: darkgreen;
+}
+#indicatorPrdct.carousel-indicators li {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    text-indent: 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background-color: azure;
+    box-shadow: inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+#indicatorPrdct.carousel-indicators .active {
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+    background-color: darkgreen;
 }

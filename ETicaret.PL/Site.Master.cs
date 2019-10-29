@@ -15,7 +15,7 @@ namespace ETicaret.PL
         {
             if (Request.IsAuthenticated)
             {
-                bool Admin=false;
+                bool Admin = false;
                 string UserID = HttpContext.Current.User.Identity.GetUserId();
                 General.ActiveUser = General.Service.UserManager.Users.Where(u => u.Id == UserID).FirstOrDefault();
                 List<AppRole> AdminRoles = General.Service.RoleManager.Roles.Where(r => r.Name == "Admin").ToList();
@@ -38,14 +38,23 @@ namespace ETicaret.PL
             }
             else
             {
+                lnkbtnAdminUserManage.Visible = false;
+                lnkbtnAdminProductManage.Visible = false;
                 pnlKullanici.Visible = false;
                 pnlGirisYap.Visible = true;
+            }
+            if (Session["totalcount"] != null)
+            {
+                lblBaketItemCount.Text = Session["totalcount"].ToString();
             }
         }
         protected void SignOut(object sender, EventArgs e)
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Session["basket"] = null;
+            Session["totalcount"] = null;
+            Session["totalamount"] = null;
             General.LastUrl = Request.Url.ToString();
             Response.Redirect("~/Login.aspx");
         }

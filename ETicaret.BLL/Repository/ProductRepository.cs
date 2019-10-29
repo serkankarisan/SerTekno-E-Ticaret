@@ -13,5 +13,9 @@ namespace ETicaret.BLL.Repository
         {
             return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.ProductCode.ToLower() == ProductCode.ToLower());
         }
+        public List<Product> ListByModelID(int ModelID)
+        {
+            return _dbSet.Where(w => w.IsActive == true && w.ModelId == ModelID).ToList();
+        }
     }
 }
