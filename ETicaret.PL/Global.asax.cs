@@ -40,7 +40,7 @@ namespace ETicaret.PL
                         if (General.Service.RoleManager.FindByName("User") == null)
                         {
                             AppRole appRole = new AppRole();
-                            appRole.Name = "Admin";
+                            appRole.Name = "User";
                             General.Service.RoleManager.Create(appRole);
                         }
                     }
@@ -51,10 +51,16 @@ namespace ETicaret.PL
         {
             decimal m = 1;
             Session["MoneyChar"] = m.ToString("C").Replace("1", "").Replace("0", "").Replace(",", "").Replace(".", "");
+            Session["DisLike"] = false;
+            Session["Like"] = false;
+            Session["LikeState"] = "None";
         }
         protected void Session_End(object sender, EventArgs e)
         {
-
+            Session["MoneyChar"] = "";
+            Session["DisLike"] = false;
+            Session["Like"] = false;
+            Session["LikeState"] = "None";
         }
     }
 }

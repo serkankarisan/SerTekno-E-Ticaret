@@ -1,4 +1,6 @@
 ﻿using ETicaret.Entity.Entity;
+using ETicaret.Entity.Identity;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,45 +22,77 @@ namespace ETicaret.PL
             }
             else
             {
-                if (!Page.IsPostBack)
+                bool Admin = false;
+                string UserID = User.Identity.GetUserId();
+                List<AppRole> AdminRoles = General.Service.RoleManager.Roles.Where(r => r.Name == "Admin").ToList();
+                foreach (AppRole Role in AdminRoles)
                 {
-                    gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
-                    gvProduct.DataBind();
-                    ddlBrand.DataSource = General.Service.Brand.Select();
-                    ddlBrand.DataValueField = "Id";
-                    ddlBrand.DataTextField = "BrandName";
-                    ddlBrand.DataBind();
-
-                    ddlModalModelBrand.DataSource = General.Service.Brand.Select();
-                    ddlModalModelBrand.DataValueField = "Id";
-                    ddlModalModelBrand.DataTextField = "BrandName";
-                    ddlModalModelBrand.DataBind();
-
-                    ddlModel.DataSource = General.Service.Model.ListByBrandId(Convert.ToInt32(ddlBrand.SelectedItem.Value));
-                    ddlModel.DataValueField = "Id";
-                    ddlModel.DataTextField = "ModelName";
-                    ddlModel.DataBind();
-
-                    ddlCategory.DataSource = General.Service.Category.Select();
-                    ddlCategory.DataValueField = "Id";
-                    ddlCategory.DataTextField = "CategoryName";
-                    ddlCategory.DataBind();
-
-                    ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
-                    ddlModalSubCategoryCategory.DataValueField = "Id";
-                    ddlModalSubCategoryCategory.DataTextField = "CategoryName";
-                    ddlModalSubCategoryCategory.DataBind();
-
-                    ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
-                    ddlSubCategory.DataValueField = "Id";
-                    ddlSubCategory.DataTextField = "SubCategoryName";
-                    ddlSubCategory.DataBind();
+                    if (Role.Users.Where(ur => ur.UserId == UserID).FirstOrDefault() != null)
+                    {
+                        Admin = true;
+                    }
                 }
-                if (General.LastUrl == Request.Url.ToString())
+                if (Admin)
                 {
-                    pnlAlertDivAccordionEdit.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDivAccordionEdit.Text = "<strong>Kayıt Başarılı</strong>. Ürün Başarıyla Kaydedildi.";
-                    pnlAlertDivAccordionEdit.Visible = true;
+                    if (!Page.IsPostBack)
+                    {
+                        gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
+                        gvProduct.DataBind();
+                        ddlBrand.DataSource = General.Service.Brand.Select();
+                        ddlBrand.DataValueField = "Id";
+                        ddlBrand.DataTextField = "BrandName";
+                        ddlBrand.DataBind();
+
+                        ddlModalModelBrand.DataSource = General.Service.Brand.Select();
+                        ddlModalModelBrand.DataValueField = "Id";
+                        ddlModalModelBrand.DataTextField = "BrandName";
+                        ddlModalModelBrand.DataBind();
+
+                        if (ddlBrand.SelectedItem == null)
+                        {
+                            ddlModel.DataSource = General.Service.Model.Select();
+                        }
+                        else
+                        {
+                            ddlModel.DataSource = General.Service.Model.ListByBrandId(Convert.ToInt32(ddlBrand.SelectedItem.Value));
+                        }
+                        ddlModel.DataValueField = "Id";
+                        ddlModel.DataTextField = "ModelName";
+                        ddlModel.DataBind();
+
+                        ddlCategory.DataSource = General.Service.Category.Select();
+                        ddlCategory.DataValueField = "Id";
+                        ddlCategory.DataTextField = "CategoryName";
+                        ddlCategory.DataBind();
+
+                        ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
+                        ddlModalSubCategoryCategory.DataValueField = "Id";
+                        ddlModalSubCategoryCategory.DataTextField = "CategoryName";
+                        ddlModalSubCategoryCategory.DataBind();
+
+                        if (ddlCategory.SelectedItem == null)
+                        {
+                            ddlSubCategory.DataSource = General.Service.SubCategory.Select();
+                        }
+                        else
+                        {
+                            ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
+                        }
+                        ddlSubCategory.DataValueField = "Id";
+                        ddlSubCategory.DataTextField = "SubCategoryName";
+                        ddlSubCategory.DataBind();
+                    }
+                    if (General.LastUrl == Request.Url.ToString())
+                    {
+                        pnlAlertDivAccordionEdit.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDivAccordionEdit.Text = "<strong>Kayıt Başarılı</strong>. Ürün Başarıyla Kaydedildi.";
+                        pnlAlertDivAccordionEdit.Visible = true;
+                    }
+                }
+                else
+                {
+                    General.LastUrl = Request.Url.ToString();
+                    Response.Redirect("http://localhost:51010/Default.aspx");
                 }
             }
         }
@@ -138,6 +172,7 @@ namespace ETicaret.PL
                     ddlModel.DataBind();
                     AccordionProduct.SelectedIndex = 1;
                     ddlBrand.SelectedValue = ddlBrand.Items.FindByText(br.BrandName).Value;
+                    ddlModalModelBrand.SelectedValue = ddlModalModelBrand.Items.FindByText(br.BrandName).Value;
                     pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
                     lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Marka Başarıyla Kaydedildi.";
                     pnlAlertDiv.Visible = true;
@@ -248,6 +283,7 @@ namespace ETicaret.PL
                     ddlSubCategory.DataBind();
                     AccordionProduct.SelectedIndex = 1;
                     ddlCategory.SelectedValue = ddlCategory.Items.FindByText(c.CategoryName).Value;
+                    ddlModalSubCategoryCategory.SelectedValue = ddlModalSubCategoryCategory.Items.FindByText(c.CategoryName).Value;
                     pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
                     lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Kategori Başarıyla Kaydedildi.";
                     pnlAlertDiv.Visible = true;

@@ -7,11 +7,58 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ETicaret.PL {
-    
-    
-    public partial class ProductDetails {
-        
+namespace ETicaret.PL
+{
+
+
+    public partial class ProductDetails
+    {
+
+        /// <summary>
+        /// lblbtnLike control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbtnLike;
+
+        /// <summary>
+        /// btnLike control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLike;
+
+        /// <summary>
+        /// lblbtndislike control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblbtndislike;
+
+        /// <summary>
+        /// btndislike control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btndislike;
+
+        /// <summary>
+        /// btncomment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btncomment;
+
         /// <summary>
         /// lblCarouselIndicators control.
         /// </summary>
@@ -20,7 +67,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCarouselIndicators;
-        
+
         /// <summary>
         /// lblCarouselInner control.
         /// </summary>
@@ -29,7 +76,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCarouselInner;
-        
+
         /// <summary>
         /// lblBrand control.
         /// </summary>
@@ -38,7 +85,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblBrand;
-        
+
         /// <summary>
         /// lblProductName control.
         /// </summary>
@@ -47,7 +94,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProductName;
-        
+
         /// <summary>
         /// lblPrice control.
         /// </summary>
@@ -56,7 +103,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
-        
+
         /// <summary>
         /// txtCount control.
         /// </summary>
@@ -65,7 +112,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCount;
-        
+
         /// <summary>
         /// btnAddBasket control.
         /// </summary>
@@ -74,5 +121,23 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddBasket;
+
+        /// <summary>
+        /// lblProperties control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProperties;
+
+        /// <summary>
+        /// lblPropertiesDesc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPropertiesDesc;
     }
 }

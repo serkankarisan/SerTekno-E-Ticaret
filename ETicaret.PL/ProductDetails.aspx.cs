@@ -66,9 +66,42 @@ namespace ETicaret.PL
                     lblBrand.Text = br.BrandName;
                     lblProductName.Text = prdct.ProductName;
                     lblPrice.Text = prdct.Price.ToString("C");
+                    string properties = "";
+                    string propertiesDesc = "";
+                    string[] propList = prdct.Properties.Split(',');
+                    foreach (var Prop in propList)
+                    {
+                        string[] propdetail = Prop.Split(':');
+                        properties += "<span>" + propdetail[0] + "</span><br/><hr class=\"mt-0 mb-0\"/>";
+                        if (propdetail.Count() == 2)
+                        {
+                            propertiesDesc += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>" + propdetail[1] + "</span><br/><hr class=\"mt-0 mb-0\"/>";
+                        }
+                        else
+                        {
+                            propertiesDesc += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Belirtilmedi <br/><hr class=\"mt-0 mb-0\"/>";
+                        }
+                    }
+                    lblPropertiesDesc.Text = propertiesDesc;
+                    lblProperties.Text = properties;
                     txtCount.Attributes.Add("Max", prdct.StockCount.ToString());
                     btnAddBasket.CommandArgument = prdct.Id.ToString();
                     btnAddBasket.CommandName = "AddBasket";
+                }
+                if ((string)Session["LikeState"] == "None")
+                {
+                    lblbtndislike.Text = "Beğenme";
+                    lblbtnLike.Text = "Beğen";
+                }
+                else if ((string)Session["LikeState"] == "Like")
+                {
+                    lblbtnLike.Text = "Vazgeç";
+                    lblbtndislike.Text = "Beğenme";
+                }
+                else if ((string)Session["LikeState"] == "DisLike")
+                {
+                    lblbtndislike.Text = "Vazgeç";
+                    lblbtnLike.Text = "Beğen";
                 }
             }
             else
@@ -94,6 +127,7 @@ namespace ETicaret.PL
             newItem.Amount = newItem.Count * newItem.UnitPrice;
             bool SepetCheck = false;
             foreach (BasketItem item in MyBasket)
+
             {
                 if (item.ProductId == newItem.ProductId)
                 {
@@ -112,6 +146,64 @@ namespace ETicaret.PL
             Session["totalamount"] = bskt.TotalAnmount(MyBasket);
             General.LastUrl = Request.Url.ToString();
             Response.Redirect("http://localhost:51010/ProductDetails.aspx?ProductId=" + ProductID);
+        }
+
+        protected void btnLike_Click(object sender, EventArgs e)
+        {
+            ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+            Product prdct = General.Service.Product.SelectById(ProductID);
+            if (lblbtnLike.Text == "Vazgeç")
+            {
+                prdct.LikeCount -= 1;
+                Session["Like"] = false;
+                Session["LikeState"] = "None";
+            }
+            else if (lblbtnLike.Text == "Beğen")
+            {
+                prdct.LikeCount += 1;
+                Session["Like"] = true;
+                if ((bool)Session["DisLike"] == true)
+                {
+                    prdct.DislikeCount -= 1;
+                    Session["DisLike"] = false;
+                }
+                Session["LikeState"] = "Like";
+            }
+            General.Service.Product.Update(prdct);
+            General.LastUrl = Request.Url.ToString();
+            Response.Redirect("http://localhost:51010/ProductDetails.aspx?ProductId=" + ProductID);
+        }
+
+        protected void btndislike_Click(object sender, EventArgs e)
+        {
+            ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+            Product prdct = General.Service.Product.SelectById(ProductID);
+            if (lblbtndislike.Text == "Vazgeç")
+            {
+                prdct.DislikeCount -= 1;
+                Session["DisLike"] = false;
+                Session["LikeState"] = "None";
+            }
+            else if (lblbtndislike.Text == "Beğenme")
+            {
+                prdct.DislikeCount += 1;
+                Session["DisLike"] = true;
+                if ((bool)Session["Like"] == true)
+                {
+                    prdct.LikeCount -= 1;
+                    Session["Like"] = false;
+                }
+                Session["LikeState"] = "DisLike";
+            }
+            General.Service.Product.Update(prdct);
+            General.LastUrl = Request.Url.ToString();
+            Response.Redirect("http://localhost:51010/ProductDetails.aspx?ProductId=" + ProductID);
+        }
+
+        protected void btncomment_Click(object sender, EventArgs e)
+        {
+            ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+            Product prdct = General.Service.Product.SelectById(ProductID);
         }
     }
 }

@@ -59,7 +59,7 @@
                                 <asp:TemplateField HeaderText="Ürün Adı">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtProductNameEdit" runat="server" Text='<%# Bind("ProductName") %>'></asp:TextBox><br />
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductNameEdit" runat="server" ErrorMessage="Ürün Adı girmelisiniz!" ControlToValidate="txtProductNameEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorProductNameEdit" runat="server" ErrorMessage="Ürün Adı girmelisiniz!" ControlToValidate="txtProductNameEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblProductNameEdit" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
@@ -84,7 +84,7 @@
                                 <asp:TemplateField HeaderText="Menşei">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtOriginEdit" runat="server" Text='<%# Bind("Origin") %>' Width="60"></asp:TextBox><br />
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorOriginEdit" runat="server" ErrorMessage="Menşei girmelisiniz!" ControlToValidate="txtOriginEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorOriginEdit" runat="server" ErrorMessage="Menşei girmelisiniz!" ControlToValidate="txtOriginEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblOriginEdit" runat="server" Text='<%# Bind("Origin") %>'></asp:Label>
@@ -120,7 +120,7 @@
                                 <asp:TemplateField HeaderText="Fiyat">
                                     <EditItemTemplate>
                                         <asp:TextBox ID="txtPriceEdit" runat="server" Text='<%# Bind("Price") %>' Width="100"></asp:TextBox><br />
-                                         <asp:RequiredFieldValidator ID="RequiredFieldValidatorPriceEdit" runat="server" ErrorMessage="Fiyat girmelisiniz!" ControlToValidate="txtPriceEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidatorPriceEdit" runat="server" ErrorMessage="Fiyat girmelisiniz!" ControlToValidate="txtPriceEdit" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductEditValidate"></asp:RequiredFieldValidator>
                                     </EditItemTemplate>
                                     <ItemTemplate>
                                         <asp:Label ID="lblPriceEdit" runat="server" Text='<%# Bind("Price") %>'></asp:Label>
@@ -282,6 +282,7 @@
                                         </div>
                                         <div class="form-group">
                                             <asp:Label ID="lblProperties" runat="server" Text="Özellikler" for="txtProperties" CssClass="text-success"></asp:Label><br />
+                                            <span>Özellik1:Açıklama, Özellik2:Açıklama, Özellik3:Açıklama ... </span>
                                             <asp:TextBox ID="txtProperties" runat="server" name="Properties" CssClass="form-control" TextMode="MultiLine" Columns="6" Rows="4"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorProperties" runat="server" ErrorMessage="Özellikleri girmelisiniz!" ControlToValidate="txtProperties" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="ProductValidate"></asp:RequiredFieldValidator>
                                         </div>

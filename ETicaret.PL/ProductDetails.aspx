@@ -4,6 +4,35 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-fluid">
+        <hr class="mt-0" />
+        <div class="row">
+            <div class="col-xl-2 text-center">
+                <div class="like-content">
+                    <span class="btn-secondary like-review" data-fa="fa-thumbs-up">
+                        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                        <asp:Label ID="lblbtnLike" runat="server" Text="Beğen" ForeColor="White"></asp:Label>
+                    </span>
+                    <asp:Button ID="btnLike" runat="server" Text="" Visible="true" OnClick="btnLike_Click" Width="0px" />
+                </div>
+            </div>
+            <div class="col-xl-2 text-center">
+                <div class="like-content">
+                    <span class="btn-secondary like-review" data-fa="fa-thumbs-down">
+                        <i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                        <asp:Label ID="lblbtndislike" runat="server" Text="Beğenme" ForeColor="White"></asp:Label>
+                    </span>
+                    <asp:Button ID="btndislike" runat="server" Text="" Visible="true" OnClick="btndislike_Click" />
+                </div>
+            </div>
+            <div class="col-xl-2 text-center">
+                <div class="like-content">
+                    <span class="btn-secondary like-review" data-fa="fa-comment">
+                        <i class="fa fa-comment" aria-hidden="true"></i>Yorum Yap
+                    </span>
+                    <asp:Button ID="btncomment" runat="server" Text="" Visible="true" OnClick="btncomment_Click" />
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xl-6 pt-3 pb-3">
                 <div id="pnlcarouselProductIndicators" class="carousel slide text-center" data-ride="carousel">
@@ -46,8 +75,37 @@
                             <asp:Button ID="btnAddBasket" runat="server" Text="Sepete Ekle" OnClick="btnAddBasket_Click" CssClass="btn btn-outline-success" />
                         </div>
                     </div>
+                    <span class="h4 row pt-4 pl-3">Özellikler</span><hr />
+                    <div class="row pt-3">
+                        <div class="col-xl-auto pr-0">
+                            <asp:Label ID="lblProperties" runat="server" Text="" CssClass="h6"></asp:Label>
+                        </div>
+                        <div class="col-xl-auto pl-0">
+                            <asp:Label ID="lblPropertiesDesc" runat="server" Text="" CssClass="h6"></asp:Label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".like-review").click(function () {
+                var fa = $(this).data("fa");
+                $(this).children('.' + fa).addClass('animate-like');
+                var delayInMilliseconds = 1000;
+                setTimeout(function () {
+                    if (fa === "fa-thumbs-up") {
+                        $('#ContentPlaceHolder1_btnLike').trigger('click');
+                    }
+                    else if (fa === "fa-thumbs-down") {
+                        $('#ContentPlaceHolder1_btndislike').trigger('click');
+                    }
+                    else if (fa === "fa-comment") {
+                        $('#ContentPlaceHolder1_btncomment').trigger('click');
+                    }
+                }, delayInMilliseconds);
+            });
+        });
+    </script>
 </asp:Content>
