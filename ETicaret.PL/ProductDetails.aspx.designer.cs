@@ -15,6 +15,24 @@ namespace ETicaret.PL
     {
 
         /// <summary>
+        /// pnlAlertDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAlertDiv;
+
+        /// <summary>
+        /// lblAlertDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAlertDiv;
+
+        /// <summary>
         /// lblbtnLike control.
         /// </summary>
         /// <remarks>
@@ -51,15 +69,6 @@ namespace ETicaret.PL
         protected global::System.Web.UI.WebControls.Button btndislike;
 
         /// <summary>
-        /// btncomment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btncomment;
-
-        /// <summary>
         /// lblCarouselIndicators control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,24 @@ namespace ETicaret.PL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCarouselInner;
+
+        /// <summary>
+        /// pnlComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlComments;
+
+        /// <summary>
+        /// lblCommentItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommentItem;
 
         /// <summary>
         /// lblBrand control.
@@ -139,5 +166,59 @@ namespace ETicaret.PL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPropertiesDesc;
+
+        /// <summary>
+        /// lvProductSmall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvProductSmall;
+
+        /// <summary>
+        /// pnlModalSubCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlModalSubCategory;
+
+        /// <summary>
+        /// lblCommentModal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCommentModal;
+
+        /// <summary>
+        /// txtModalComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtModalComment;
+
+        /// <summary>
+        /// RequiredFieldValidatorModalComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorModalComment;
+
+        /// <summary>
+        /// btnModalCommentSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModalCommentSave;
     }
 }

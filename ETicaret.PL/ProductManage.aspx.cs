@@ -255,6 +255,7 @@ namespace ETicaret.PL
             ddlModel.DataValueField = "Id";
             ddlModel.DataTextField = "ModelName";
             ddlModel.DataBind();
+            ddlModalModelBrand.SelectedValue = ddlModalModelBrand.Items.FindByText(General.Service.Brand.SelectById(Convert.ToInt32(ddlBrand.SelectedItem.Value)).BrandName).Value;
         }
 
         protected void btnModalCategorySave_Click(object sender, EventArgs e)
@@ -365,6 +366,7 @@ namespace ETicaret.PL
             ddlSubCategory.DataValueField = "Id";
             ddlSubCategory.DataTextField = "SubCategoryName";
             ddlSubCategory.DataBind();
+            ddlModalSubCategoryCategory.SelectedValue = ddlModalSubCategoryCategory.Items.FindByText(General.Service.Category.SelectById(Convert.ToInt32(ddlCategory.SelectedItem.Value)).CategoryName).Value;
         }
 
         protected void btnSelectedDelete_Click(object sender, EventArgs e)

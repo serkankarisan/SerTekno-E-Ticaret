@@ -15,8 +15,6 @@ namespace ETicaret.Entity.Entity
         private string _productCode;
         private string _origin;
         private string _decription;
-        private int _likeCount;
-        private int __dislikeCount;
         private int _warrantyYearCount;
         private int _stockCount;
         private int _criticalStockCount;
@@ -37,10 +35,6 @@ namespace ETicaret.Entity.Entity
         [MaxLength(150, ErrorMessage = "Açıklama 150 karakteri geçemez!")]
         [Column(Order = 6)]
         public string Decription { get => _decription; set => _decription = value; }
-        [Column(Order = 7)]
-        public int LikeCount { get => _likeCount; set => _likeCount = value; }
-        [Column(Order = 8)]
-        public int DislikeCount { get => __dislikeCount; set => __dislikeCount = value; }
         [Column(Order = 9)]
         public int WarrantyYearCount { get => _warrantyYearCount; set => _warrantyYearCount = value; }
         [Required]
@@ -66,11 +60,10 @@ namespace ETicaret.Entity.Entity
 
         public virtual List<ProductImage> ProductImages { get; set; }
         public virtual List<ProductComment> ProductComments { get; set; }
+        public virtual List<ProductEvaluation> ProductEvaluations { get; set; }
 
         public Product()
         {
-            LikeCount = 0;
-            DislikeCount = 0;
             WarrantyYearCount = 2;
             ProductCode = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Day.ToString() + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
         }

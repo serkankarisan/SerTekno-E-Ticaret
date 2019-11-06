@@ -83,6 +83,7 @@
     <Compile Include="Repository\OrderDetailRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductCommentRepository.cs" />
+    <Compile Include="Repository\ProductEvaluationRepository.cs" />
     <Compile Include="Repository\ProductImageRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\Service\RepositoryService.cs" />

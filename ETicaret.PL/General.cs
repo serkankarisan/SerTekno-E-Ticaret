@@ -24,8 +24,8 @@ namespace ETicaret.PL
                 productView.Id = product.Id;
                 productView.CriticalStockCount = product.CriticalStockCount;
                 productView.Decription = product.Decription;
-                productView.DislikeCount = product.DislikeCount;
-                productView.LikeCount = product.LikeCount;
+                productView.DislikeCount = General.Service.ProductEvaluation.ProductDisLikeCount(product.Id);
+                productView.LikeCount = General.Service.ProductEvaluation.ProductLikeCount(product.Id);
                 productView.ModelName = General.Service.Model.SelectById(product.ModelId).ModelName;
                 productView.Origin = product.Origin;
                 productView.Price = product.Price;

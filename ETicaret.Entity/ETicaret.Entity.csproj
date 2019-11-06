@@ -87,6 +87,7 @@
     <Compile Include="Entity\OrderDetail.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\ProductComment.cs" />
+    <Compile Include="Entity\ProductEvaluation.cs" />
     <Compile Include="Entity\ProductImage.cs" />
     <Compile Include="Entity\SubCategory.cs" />
     <Compile Include="Identity\AppRole.cs" />

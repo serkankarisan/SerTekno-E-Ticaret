@@ -18,6 +18,7 @@ namespace ETicaret.BLL.Repository.Service
         private readonly OrderDetailRepository orderDetailRepository;
         private readonly OrderRepository orderRepository;
         private readonly ProductCommentRepository productCommentRepository;
+        private readonly ProductEvaluationRepository productEvaluationRepository;
         private readonly ProductImageRepository productImageRepository;
         private readonly ProductRepository productRepository;
         private readonly SubCategoryRepository subCategoryRepository;
@@ -36,6 +37,7 @@ namespace ETicaret.BLL.Repository.Service
             productRepository = new ProductRepository();
             productImageRepository = new ProductImageRepository();
             productCommentRepository = new ProductCommentRepository();
+            productEvaluationRepository = new ProductEvaluationRepository();
             subCategoryRepository = new SubCategoryRepository();
             _context = new ETicaretContext(); ;
 
@@ -52,6 +54,7 @@ namespace ETicaret.BLL.Repository.Service
         public ProductRepository Product => productRepository;
         public ProductImageRepository ProductImage => productImageRepository;
         public ProductCommentRepository ProductComment => productCommentRepository;
+        public ProductEvaluationRepository ProductEvaluation => productEvaluationRepository;
         public SubCategoryRepository SubCategory => subCategoryRepository;
 
         public UserStore<AppUser> UserStore => userStore;

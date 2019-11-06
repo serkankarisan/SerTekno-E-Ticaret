@@ -23,6 +23,7 @@ namespace ETicaret.DAL.Context
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<ProductEvaluation> ProductEvaluations { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
     }

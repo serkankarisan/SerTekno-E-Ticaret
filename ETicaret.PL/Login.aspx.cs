@@ -59,8 +59,17 @@ namespace ETicaret.PL
                 }
                 else
                 {
-                    General.LastUrl = "http://localhost:51010/Login.aspx";
-                    Response.Redirect("Default.aspx");
+                    if (General.LastUrl != "")
+                    {
+                        string lastUrl = General.LastUrl;
+                        General.LastUrl = Request.Url.ToString();
+                        Response.Redirect(lastUrl);
+                    }
+                    else
+                    {
+                        General.LastUrl = "http://localhost:51010/Login.aspx";
+                        Response.Redirect("Default.aspx");
+                    }
                 }
             }
             else

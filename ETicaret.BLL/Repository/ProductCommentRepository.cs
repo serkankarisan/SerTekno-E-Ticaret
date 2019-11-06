@@ -13,5 +13,13 @@ namespace ETicaret.BLL.Repository
         {
             return _dbSet.Where(w => w.IsActive == true && w.ProductId==ProductID).ToList();
         }
+        public ProductComment GetProductCommentByUser(string UserID, int ProductID)
+        {
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.ProductId == ProductID && x.UserId == UserID);
+        }
+        public int ProductCommentCount(int ProductID)
+        {
+            return _dbSet.Where(w => w.IsActive == true && w.ProductId == ProductID).Count();
+        }
     }
 }
