@@ -155,7 +155,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             var url = window.location.pathname;
-            console.log(url);
             $('.nav-link').removeClass('active');
             if (url === "/Default.aspx") {
                 $('#NavDefault').addClass('active');

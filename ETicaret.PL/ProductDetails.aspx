@@ -110,7 +110,7 @@
                                             </div>
                                             <div class="row" style="min-height: 80px;">
                                                 <div class="col-12 col-sm-12 col-md-12 text-success text-center">
-                                                    <span class="wordwrap h6"><%# Eval("ProductName") %></span>
+                                                    <span class="wordwrap" style="font-size: 13px;"><%# Eval("ProductName") %></span>
                                                 </div>
                                             </div>
                                             <div class="row">

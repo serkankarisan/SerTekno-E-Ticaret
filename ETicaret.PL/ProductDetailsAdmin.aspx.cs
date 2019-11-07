@@ -4,6 +4,7 @@ using ETicaret.PL.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -79,7 +80,7 @@ namespace ETicaret.PL
                             }
                         }
                         string Li = "<ol id=\"indicatorPrdct\" class=\"" + "carousel-indicators\">" + "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + "0\"" + " class=\"" + " active\"" + "></li>";
-                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count - 1; i++)
+                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count ; i++)
                         {
                             Li += "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + i + "\"" + "></li>";
                         }
@@ -136,22 +137,22 @@ namespace ETicaret.PL
                             {
                                 AppUser commUser = General.Service.UserManager.FindById(comment.UserId);
                                 if (UserID != "")
-                                {                                   
-                                        CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
-                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px dashed #6DB72C;\">" +
-                                            "<div class=\"p-2 col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 wordwrap\">" +
-                                            comment.Content +
-                                            "</div>"
-                                            + "<div class=\"col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 text-center pt-4\">" +
-                                            "<a id=\"btnCommentDelete" + ProductID + "\" class=\"btn btn-danger btnCommentDelete\" data-commid=\"" + comment.Id + "\" data-productid=\"" + ProductID + "\"/>Yorumu Sil</a>" +
-                                        "</div>" +
-                                            "</div>";
-                                    
+                                {
+                                    CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
+                                        "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
+                                        "<div class=\"p-2 col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 wordwrap\">" +
+                                        comment.Content +
+                                        "</div>"
+                                        + "<div class=\"col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 text-center pt-4\">" +
+                                        "<a id=\"btnCommentDelete" + ProductID + "\" class=\"btn btn-danger btnCommentDelete\" data-commid=\"" + comment.Id + "\" data-productid=\"" + ProductID + "\"/>Yorumu Sil</a>" +
+                                    "</div>" +
+                                        "</div>";
+
                                 }
                                 else
                                 {
                                     CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
-                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px dashed #6DB72C;\">" +
+                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
                                             "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\">" +
                                             comment.Content +
                                             "</div>" +
@@ -163,8 +164,11 @@ namespace ETicaret.PL
                     }
                 }
                 List<ProductViewModel> ProductViewList = General.ProductListToProductViewList(General.Service.Product.Select().Where(p => p.Id != ProductID && p.SubCategoryId == prdct.SubCategoryId).ToList());
-                lvProductSmall.DataSource = ProductViewList.OrderByDescending(p => (p.LikeCount- p.DislikeCount)).Take(6);
+                lvProductSmall.DataSource = ProductViewList.OrderByDescending(p => (p.LikeCount - p.DislikeCount)).Take(6);
                 lvProductSmall.DataBind();
+                List<ProductImage> ProductImageList = General.Service.ProductImage.Select().Where(p => p.ProductId == ProductID && p.ImageType != "Cover").ToList();
+                lvImagesDel.DataSource = ProductImageList;
+                lvImagesDel.DataBind();
             }
             else
             {
@@ -318,5 +322,73 @@ namespace ETicaret.PL
             General.Service.ProductComment.Delete(CommID);
         }
 
+        protected void btnAddImages_Click(object sender, EventArgs e)
+        {
+            if (FileUploadProductImages.HasFile)
+            {
+                foreach (HttpPostedFile file in FileUploadProductImages.PostedFiles)
+                {
+                    try
+                    {
+                        string filename = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace(":", "") + DateTime.Now.Millisecond.ToString() + "_" + Path.GetFileName(file.FileName);
+                        if (filename != "")
+                        {
+                            file.SaveAs(Server.MapPath("~/Images/") + filename);
+                            ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+                            if (ProductID != 0)
+                            {
+                                ProductImage prImg = new ProductImage();
+                                prImg.ImagesPath = "Images/" + filename;
+                                prImg.ProductId = ProductID;
+                                prImg.ImageType = "Other";
+                                General.Service.ProductImage.Insert(prImg);
+                            }
+                            else
+                            {
+                                string lasturl = General.LastUrl;
+                                General.LastUrl = Request.Url.ToString();
+                                Response.Redirect(lasturl);
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlAlertDiv.Visible = true;
+                    }
+                }
+                General.LastUrl = Request.Url.ToString();
+                Response.Redirect("http://localhost:51010/ProductDetailsAdmin.aspx?ProductId=" + ProductID);
+            }
+        }
+
+        protected void btnImagesDelete_Click(object sender, EventArgs e)
+        {
+            ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+            string SessionImgID = txtSessionImgID.Text.Trim();
+            string[] ImgIDlist = SessionImgID.Split(',');
+            if (ImgIDlist.Count() != 0)
+            {
+                foreach (string imgID in ImgIDlist)
+                {
+                    ProductImage img = General.Service.ProductImage.SelectById(Convert.ToInt32(imgID));
+                    File.Delete(MapPath(img.ImagesPath));
+                    General.Service.ProductImage.Delete(Convert.ToInt32(imgID));
+                }
+                List<ProductImage> ProductImageList = General.Service.ProductImage.Select().Where(p => p.ProductId == ProductID && p.ImageType != "Cover").ToList();
+                lvImagesDel.DataSource = ProductImageList;
+                lvImagesDel.DataBind();
+                General.LastUrl = Request.Url.ToString();
+                Response.Redirect("http://localhost:51010/ProductDetailsAdmin.aspx?ProductId=" + ProductID);
+            }
+            else
+            {
+                pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız!</strong>. Resim veya Resimler seçmelisiniz!";
+                pnlAlertDiv.Visible = true;
+            }
+        }
     }
 }

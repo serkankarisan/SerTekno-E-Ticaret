@@ -73,6 +73,7 @@ namespace ETicaret.PL
             gvUsers.EditIndex = -1;
             string ID = gvUsers.DataKeys[e.RowIndex].Value.ToString();
             AppUser selectedUser = General.Service.UserManager.FindById(ID);
+            File.Delete(MapPath(selectedUser.ProfileImage));
             General.Service.UserManager.Delete(selectedUser);
             gvUsers.DataSource = General.Service.UserManager.Users.ToList();
             gvUsers.DataBind();
@@ -91,6 +92,7 @@ namespace ETicaret.PL
                     selected = true;
                     string ID = gvUsers.DataKeys[row.RowIndex].Value.ToString();
                     AppUser selectedUser = General.Service.UserManager.FindById(ID);
+                    File.Delete(MapPath(selectedUser.ProfileImage));
                     General.Service.UserManager.Delete(selectedUser);
                 }
             }

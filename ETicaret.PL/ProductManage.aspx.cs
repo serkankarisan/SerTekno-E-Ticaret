@@ -384,6 +384,7 @@ namespace ETicaret.PL
                     foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
                     {
                         File.Delete(MapPath(img.ImagesPath));
+                        General.Service.ProductImage.Delete(img.Id);
                     }
                     General.Service.Product.Delete(ID);
                 }
@@ -461,6 +462,7 @@ namespace ETicaret.PL
             foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
             {
                 File.Delete(MapPath(img.ImagesPath));
+                General.Service.ProductImage.Delete(img.Id);
             }
             General.Service.Product.Delete(ID);
             pnlAlertDivAccordionEdit.CssClass = "alert alert-warning alert-dismissible text-center";

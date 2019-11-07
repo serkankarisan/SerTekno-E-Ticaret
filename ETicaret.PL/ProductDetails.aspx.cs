@@ -80,7 +80,7 @@ namespace ETicaret.PL
                             }
                         }
                         string Li = "<ol id=\"indicatorPrdct\" class=\"" + "carousel-indicators\">" + "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + "0\"" + " class=\"" + " active\"" + "></li>";
-                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count - 1; i++)
+                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count; i++)
                         {
                             Li += "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + i + "\"" + "></li>";
                         }
@@ -141,7 +141,7 @@ namespace ETicaret.PL
                                     if (commUser.Id == UserID)
                                     {
                                         CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
-                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px dashed #6DB72C;\">" +
+                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
                                             "<div class=\"p-2 col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 wordwrap\">" +
                                             comment.Content +
                                             "</div>"
@@ -153,7 +153,7 @@ namespace ETicaret.PL
                                     else
                                     {
                                         CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
-                                           "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px dashed #6DB72C;\">" +
+                                           "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
                                            "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\">" +
                                            comment.Content +
                                            "</div>" +
@@ -163,7 +163,7 @@ namespace ETicaret.PL
                                 else
                                 {
                                     CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
-                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px dashed #6DB72C;\">" +
+                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
                                             "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\">" +
                                             comment.Content +
                                             "</div>" +

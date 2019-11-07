@@ -123,6 +123,51 @@ namespace ETicaret.PL
         protected global::System.Web.UI.WebControls.Label lblProductName;
 
         /// <summary>
+        /// pnlAddImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddImages;
+
+        /// <summary>
+        /// FileUploadProductImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUploadProductImages;
+
+        /// <summary>
+        /// btnAddImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddImages;
+
+        /// <summary>
+        /// btnIptal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnIptal;
+
+        /// <summary>
+        /// RequiredFieldValidatorCoverImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorCoverImage;
+
+        /// <summary>
         /// lblPrice control.
         /// </summary>
         /// <remarks>
@@ -177,13 +222,13 @@ namespace ETicaret.PL
         protected global::System.Web.UI.WebControls.ListView lvProductSmall;
 
         /// <summary>
-        /// pnlModalSubCategory control.
+        /// pnlModalComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlModalSubCategory;
+        protected global::System.Web.UI.WebControls.Panel pnlModalComment;
 
         /// <summary>
         /// lblCommentModal control.
@@ -220,5 +265,41 @@ namespace ETicaret.PL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnModalCommentSave;
+
+        /// <summary>
+        /// pnlModalImageDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlModalImageDelete;
+
+        /// <summary>
+        /// lvImagesDel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView lvImagesDel;
+
+        /// <summary>
+        /// txtSessionImgID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSessionImgID;
+
+        /// <summary>
+        /// btnImagesDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnImagesDelete;
     }
 }
