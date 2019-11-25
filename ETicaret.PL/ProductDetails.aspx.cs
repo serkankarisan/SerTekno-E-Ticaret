@@ -142,11 +142,11 @@ namespace ETicaret.PL
                                     {
                                         CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
                                             "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
-                                            "<div class=\"p-2 col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 wordwrap\">" +
+                                            "<div class=\"p-2 col-8 col-sm-8 col-md-8 col-lg-8 col-xl-9 wordwrap\" style=\"background-color:azure; border-radius: 25px; \">" +
                                             comment.Content +
                                             "</div>"
                                             + "<div class=\"col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 text-center pt-4\">" +
-                                            "<a id=\"btnCommentDelete"+ProductID+ "\" class=\"btn btn-danger btnCommentDelete\" data-commid=\"" + comment.Id + "\" data-productid=\"" + ProductID + "\"/>Yorumu Sil</a>" +
+                                            "<a id=\"btnCommentDelete"+ProductID+ "\" class=\"btn btn-danger btnCommentDelete\" data-commid=\"" + comment.Id + "\" style=\"color: white; border-radius:25px; \" data-productid=\"" + ProductID + "\"/>Yorumu Sil</a>" +
                                         "</div>" +
                                             "</div>";
                                     }
@@ -154,7 +154,7 @@ namespace ETicaret.PL
                                     {
                                         CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
                                            "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
-                                           "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\">" +
+                                           "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\" style=\"background-color:azure; border-radius: 25px; \">" +
                                            comment.Content +
                                            "</div>" +
                                            "</div>";
@@ -164,7 +164,7 @@ namespace ETicaret.PL
                                 {
                                     CommentItem += "<span class=\"h6\">" + commUser.Name + " " + commUser.SurName + "</span>" +
                                             "<div class=\"row\" style=\"min-width: 200px;min-height: 100px;border: 2px ridge #6DB72C;border-radius: 25px;\">" +
-                                            "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\">" +
+                                            "<div class=\"p-2 col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 wordwrap\" style=\"background-color:azure; border-radius: 25px; \">" +
                                             comment.Content +
                                             "</div>" +
                                             "</div>";
