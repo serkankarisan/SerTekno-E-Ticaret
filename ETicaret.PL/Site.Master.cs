@@ -58,5 +58,12 @@ namespace ETicaret.PL
             General.LastUrl = Request.Url.ToString();
             Response.Redirect("~/Login.aspx");
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            General.LastUrl = Request.Url.ToString();
+            Response.Redirect("~/Default.aspx?search="+AraTextboxMasterPage.Text
+                .Trim());
+        }
     }
 }

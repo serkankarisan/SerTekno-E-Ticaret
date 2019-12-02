@@ -369,6 +369,9 @@ display:none;
 #ContentPlaceHolder1_txtSessionImgID {
     display: none;
 }
+#ContentPlaceHolder1_btnCheckboxCategoryPost {
+    display: none;
+}
 .it .btn-orange {
     background-color: blue;
     border-color: #777 !important;

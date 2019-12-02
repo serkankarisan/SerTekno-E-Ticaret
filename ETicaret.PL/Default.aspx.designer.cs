@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ETicaret.PL {
-    
-    
-    public partial class Default1 {
-        
+namespace ETicaret.PL
+{
+
+
+    public partial class Default1
+    {
+
         /// <summary>
         /// SuccesAlertDiv control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel SuccesAlertDiv;
-        
+
         /// <summary>
         /// lblSuccesAlert control.
         /// </summary>
@@ -29,7 +31,34 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccesAlert;
-        
+
+        /// <summary>
+        /// pnlFilterBrands control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFilterBrands;
+
+        /// <summary>
+        /// pnlFilterCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlFilterCategory;
+
+        /// <summary>
+        /// btnFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFilter;
+
         /// <summary>
         /// pnlContent control.
         /// </summary>
@@ -38,7 +67,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlContent;
-        
+
         /// <summary>
         /// lvProduct control.
         /// </summary>
@@ -47,7 +76,16 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvProduct;
-        
+
+        /// <summary>
+        /// pnlEmtyList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEmtyList;
+
         /// <summary>
         /// pnlSmall control.
         /// </summary>
@@ -56,7 +94,7 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlSmall;
-        
+
         /// <summary>
         /// lvProductSmall control.
         /// </summary>
@@ -65,5 +103,14 @@ namespace ETicaret.PL {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListView lvProductSmall;
+
+        /// <summary>
+        /// pnlEmtyListSmall control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEmtyListSmall;
     }
 }
