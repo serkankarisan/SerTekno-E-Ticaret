@@ -195,6 +195,7 @@ namespace ETicaret.PL
             List<BasketItem> MyBasket = (List<BasketItem>)Session["basket"];
             BasketItem newItem = new BasketItem();
             newItem.ProductId = Convert.ToInt32(btn.CommandArgument);
+            newItem.ProductCoverImages = General.Service.ProductImage.Select().Where(w => w.ProductId == newItem.ProductId && w.ImageType == "Cover").FirstOrDefault().ImagesPath;
             newItem.ProductName = lblProductName.Text;
             newItem.Count = Convert.ToInt32(txtCount.Text);
             newItem.UnitPrice = Convert.ToDecimal(lblPrice.Text.Trim().Replace(Session["MoneyChar"].ToString(), "").Replace(".", ""));

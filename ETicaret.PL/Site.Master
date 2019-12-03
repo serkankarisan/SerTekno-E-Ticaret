@@ -38,11 +38,11 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <div class="dropdown-item">
-                                <asp:Button ID="btnOrders" runat="server" Text="Siparişlerim" CssClass="btn btn-light" PostBackUrl="" />
+                                <asp:Button ID="btnOrders" runat="server" Text="Siparişlerim" CssClass="btn btn-light" PostBackUrl="~/OrderPage.aspx" />
                                 <label for="btnOrders" class="btn btn-light mb-0"><i class="fa fa-shopping-bag" aria-hidden="true"></i></label>
                             </div>
                             <div class="dropdown-item">
-                                <asp:Button ID="btnProfile" runat="server" Text="Sayfam" CssClass="btn btn-light" PostBackUrl="" />
+                                <asp:Button ID="btnProfile" runat="server" Text="Sayfam" CssClass="btn btn-light" PostBackUrl="~/UserProfile.aspx" />
                                 <label for="btnProfile" class="btn btn-light mb-0"><i class="fa fa-user-circle" aria-hidden="true"></i></label>
                             </div>
                             <div class="dropdown-item">
@@ -57,7 +57,7 @@
                     <a href="Register.aspx" class="btn btn-outline-info btn-lg mw-100">Kayıt Ol</a>
                 </asp:Panel>
                 <div id="sepet" class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-2 text-center text-sm-center text-md-center text-lg-center text-xl-right  pt-1">
-                    <a href="#" class="btn">
+                    <a href="OrderPage.aspx" class="btn">
                         <div style="display: inline-block;">
                             <img id="SepetIconMaster" alt="sepet" src="Images/shopping-cart-32.ico" class="mw-100">
                         </div>

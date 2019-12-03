@@ -130,11 +130,14 @@
     <Content Include="Images\serteknoLogo.png" />
     <Content Include="Images\shopping-cart-32.ico" />
     <Content Include="Login.aspx" />
+    <Content Include="OrderPage.aspx" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductDetailsAdmin.aspx" />
     <Content Include="ProductManage.aspx" />
+    <Content Include="ProfileUpdate.aspx" />
     <Content Include="Register.aspx" />
     <Content Include="UserManage.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +176,13 @@
     <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="OrderPage.aspx.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderPage.aspx.designer.cs">
+      <DependentUpon>OrderPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ProductDetails.aspx.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -193,6 +203,13 @@
     </Compile>
     <Compile Include="ProductManage.aspx.designer.cs">
       <DependentUpon>ProductManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProfileUpdate.aspx.cs">
+      <DependentUpon>ProfileUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProfileUpdate.aspx.designer.cs">
+      <DependentUpon>ProfileUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
@@ -216,6 +233,13 @@
     </Compile>
     <Compile Include="UserManage.aspx.designer.cs">
       <DependentUpon>UserManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

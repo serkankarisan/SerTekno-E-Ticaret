@@ -282,6 +282,7 @@ ul.social-network {
     font-size: 55px;
     color: darkgreen;
 }
+
 #indicatorPrdct.carousel-indicators li {
     display: inline-block;
     width: 15px;
@@ -358,20 +359,25 @@ ul.social-network {
 }
 
 #ContentPlaceHolder1_btnLike {
-display:none;
+    display: none;
 }
+
 #ContentPlaceHolder1_btndislike {
     display: none;
 }
+
 #ContentPlaceHolder1_btnCommDel {
     display: none;
 }
+
 #ContentPlaceHolder1_txtSessionImgID {
     display: none;
 }
+
 #ContentPlaceHolder1_btnCheckboxCategoryPost {
     display: none;
 }
+
 .it .btn-orange {
     background-color: blue;
     border-color: #777 !important;
@@ -410,3 +416,23 @@ display:none;
         opacity: 0;
         filter: alpha(opacity=0);
     }
+
+#ContentPlaceHolder1_ProfileImg {
+    height: 200px;
+}
+
+#ContentPlaceHolder1_btnImageUpdate {
+    display: none;
+}
+
+#ContentPlaceHolder1_FileUploadProfileImage {
+    display: none;
+}
+
+#ContentPlaceHolder1_btnDeleteBasketItem {
+    background-color: transparent;
+}
+
+#ContentPlaceHolder1_btnDeleteBasketItem1 {
+    background-color: transparent;
+}

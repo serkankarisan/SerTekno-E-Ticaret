@@ -9,5 +9,9 @@ namespace ETicaret.BLL.Repository
 {
     public class OrderRepository:BaseRepository<Order>
     {
+        public List<Order> ListByUserId(string UserID)
+        {
+            return _dbSet.Where(w => w.IsActive == true && w.UserId == UserID).ToList();
+        }
     }
 }

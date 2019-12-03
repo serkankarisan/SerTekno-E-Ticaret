@@ -121,6 +121,10 @@ namespace ETicaret.PL
                     string filename = Path.GetFileName(FileUploadProfileImage.FileName);
                     if (filename != "")
                     {
+                        if (SelectedUser.ProfileImage!= "Images/profile-icon-png-917.png")
+                        {
+                            File.Delete(MapPath(SelectedUser.ProfileImage));
+                        }
                         FileUploadProfileImage.SaveAs(Server.MapPath("~/Images/") + filename);
                         SelectedUser.ProfileImage="Images/" + filename;
                     }
