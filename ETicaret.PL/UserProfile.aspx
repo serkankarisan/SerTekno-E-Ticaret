@@ -35,18 +35,26 @@
         <hr />
         <div class="row">
             <asp:Panel ID="pnlOrderContent" runat="server" CssClass="container-fluid">
-                <div class="row">
+                <div class="row p-3">
                     <asp:ListView ID="lvOrders" runat="server">
                         <ItemTemplate>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                                <span>Sipariş Tarihi:&nbsp;</span>
-                                <span class="badge badge-pill badge-light"><%# Eval("AddedDate") %></span><br />
-                                <span>Toplam Ürün Sayısı:&nbsp;</span>
-                                <span class="badge badge-pill badge-light"><%# Eval("TotalProductCount") %></span><br />
-                                 <span>Toplam Fiyat:&nbsp;</span>
-                                <span class="badge badge-pill badge-light"><%# Eval("TotalPrice") %></span><br />
-                                 <span>Teslim Tarihi:&nbsp;</span>
-                                <span class="badge badge-pill badge-light"><%# Eval("DeliveryDate") %></span>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center">
+                                <div class="card mb-2">
+                                    <span>Sipariş Tarihi</span>
+                                    <span class="badge badge-pill badge-light"><%# Eval("AddedDate") %></span><br />
+                                    <span>Toplam Ürün Sayısı</span>
+                                    <span class="badge badge-pill badge-light"><%# Eval("TotalProductCount") %></span><br />
+                                    <span>Toplam Fiyat</span>
+                                    <span class="badge badge-pill badge-light"><%# Eval("TotalPrice") %></span><br />
+                                    <span>Teslim Tarihi</span>
+                                    <span class="badge badge-pill badge-light"><%# Eval("DeliveryDate", "{0:d}") %></span><br />
+                                    <div class="row mb-2">
+                                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                                            <a class="btn btn-outline-info pt-1 pb-1" href="OrderDetails.aspx?OrderId=<%# Eval("Id") %>">Detaylar
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </ItemTemplate>
                     </asp:ListView>

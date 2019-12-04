@@ -34,15 +34,15 @@ namespace ETicaret.PL
                 List<Order> OrderList = General.Service.Order.ListByUserId(UserID);
                 if (OrderList.Count!=0)
                 {
-                    pnlOrderContent.Visible = false;
-                    pnlEmtyList.Visible = true;
+                    pnlOrderContent.Visible = true;
+                    pnlEmtyList.Visible = false;
                     lvOrders.DataSource = OrderList;
                     lvOrders.DataBind();
                 }
                 else
                 {
-                    pnlOrderContent.Visible = true;
-                    pnlEmtyList.Visible = false;
+                    pnlOrderContent.Visible = false;
+                    pnlEmtyList.Visible = true;
                 }
             }
         }

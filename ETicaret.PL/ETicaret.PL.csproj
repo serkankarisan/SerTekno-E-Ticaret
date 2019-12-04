@@ -130,6 +130,7 @@
     <Content Include="Images\serteknoLogo.png" />
     <Content Include="Images\shopping-cart-32.ico" />
     <Content Include="Login.aspx" />
+    <Content Include="OrderDetails.aspx" />
     <Content Include="OrderPage.aspx" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductDetailsAdmin.aspx" />
@@ -176,6 +177,13 @@
     <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
+    <Compile Include="OrderDetails.aspx.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OrderDetails.aspx.designer.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="OrderPage.aspx.cs">
       <DependentUpon>OrderPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
