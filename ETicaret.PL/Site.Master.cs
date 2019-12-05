@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ETicaret.PL
@@ -62,7 +61,7 @@ namespace ETicaret.PL
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             General.LastUrl = Request.Url.ToString();
-            Response.Redirect("~/Default.aspx?search="+AraTextboxMasterPage.Text
+            Response.Redirect("~/Default.aspx?search=" + AraTextboxMasterPage.Text
                 .Trim());
         }
     }

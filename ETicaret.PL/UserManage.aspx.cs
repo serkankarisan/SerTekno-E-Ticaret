@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -72,10 +71,20 @@ namespace ETicaret.PL
             pnlAlertDiv.Visible = false;
             gvUsers.EditIndex = -1;
             string ID = gvUsers.DataKeys[e.RowIndex].Value.ToString();
-            AppUser selectedUser = General.Service.UserManager.FindById(ID);
-            File.Delete(MapPath(selectedUser.ProfileImage));
-            General.Service.UserManager.Delete(selectedUser);
-            gvUsers.DataSource = General.Service.UserManager.Users.ToList();
+            try
+            {
+                AppUser selectedUser = General.Service.UserManager.FindById(ID);
+                File.Delete(MapPath(selectedUser.ProfileImage));
+                General.Service.UserManager.Delete(selectedUser);
+                gvUsers.DataSource = General.Service.UserManager.Users.ToList();
+            }
+            catch (Exception ex)
+            {
+                string hata = ex.Message;
+                pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                pnlAlertDiv.Visible = true;
+            }
             gvUsers.DataBind();
         }
 
@@ -91,9 +100,19 @@ namespace ETicaret.PL
                 {
                     selected = true;
                     string ID = gvUsers.DataKeys[row.RowIndex].Value.ToString();
-                    AppUser selectedUser = General.Service.UserManager.FindById(ID);
-                    File.Delete(MapPath(selectedUser.ProfileImage));
-                    General.Service.UserManager.Delete(selectedUser);
+                    try
+                    {
+                        AppUser selectedUser = General.Service.UserManager.FindById(ID);
+                        File.Delete(MapPath(selectedUser.ProfileImage));
+                        General.Service.UserManager.Delete(selectedUser);
+                    }
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
             }
             if (selected)
@@ -121,12 +140,12 @@ namespace ETicaret.PL
                     string filename = Path.GetFileName(FileUploadProfileImage.FileName);
                     if (filename != "")
                     {
-                        if (SelectedUser.ProfileImage!= "Images/profile-icon-png-917.png")
+                        if (SelectedUser.ProfileImage != "Images/profile-icon-png-917.png")
                         {
                             File.Delete(MapPath(SelectedUser.ProfileImage));
                         }
                         FileUploadProfileImage.SaveAs(Server.MapPath("~/Images/") + filename);
-                        SelectedUser.ProfileImage="Images/" + filename;
+                        SelectedUser.ProfileImage = "Images/" + filename;
                     }
                 }
                 catch (Exception ex)
@@ -147,19 +166,29 @@ namespace ETicaret.PL
             SelectedUser.PhoneNumber = txtPhoneNumber.Text.Trim();
             SelectedUser.AdressZipCode = Convert.ToInt32(txtZipCode.Text.Trim());
             SelectedUser.Gender = ddlGender.SelectedItem.Text.Trim();
-            IdentityResult ıdentityResult = General.Service.UserManager.Update(SelectedUser);
-            if (ıdentityResult.Succeeded)
+            try
             {
-                AccordionUser.SelectedIndex = 0;
-                pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                lblAlertDiv.Text = "<strong>İşlem Başarılı</strong>. Kullanıcı Başarıyla Güncellendi.";
-                pnlAlertDiv.Visible = true;
+                IdentityResult ıdentityResult = General.Service.UserManager.Update(SelectedUser);
+                if (ıdentityResult.Succeeded)
+                {
+                    AccordionUser.SelectedIndex = 0;
+                    pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDiv.Text = "<strong>İşlem Başarılı</strong>. Kullanıcı Başarıyla Güncellendi.";
+                    pnlAlertDiv.Visible = true;
+                }
+                else
+                {
+                    AccordionUser.SelectedIndex = 0;
+                    pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! " + ıdentityResult.Errors.FirstOrDefault() + "!";
+                    pnlAlertDiv.Visible = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                AccordionUser.SelectedIndex = 0;
+                string hata = ex.Message;
                 pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! " + ıdentityResult.Errors.FirstOrDefault() + "!";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                 pnlAlertDiv.Visible = true;
             }
             gvUsers.EditIndex = -1;

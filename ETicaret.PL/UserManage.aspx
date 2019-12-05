@@ -81,7 +81,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblAdressList" runat="server" Text='<%# Bind("Adress") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle CssClass="wordwrap minwidthAdress" Width="250px"/>
+                                    <ItemStyle CssClass="wordwrap minwidthAdress" Width="250px" />
                                 </asp:TemplateField>
                                 <%-- <asp:TemplateField HeaderText="Posta Kodu">
                                     <ItemTemplate>
@@ -186,9 +186,11 @@
                                                     <asp:Image ID="UserManageProfileImg" runat="server" CssClass="rounded-circle" alt="ProfilResmi" Width="180" Height="180" />
                                                 </div>
                                                 <div class="col-xl-6 text-center">
-                                                    <asp:FileUpload ID="FileUploadProfileImage" runat="server" CssClass="btn btn-success" Style="width: 110px;" ValidationGroup="UserValidate" /><br /><br />
-                                                    <asp:Button ID="btnUserUpdate" runat="server" Text="Kullanıcıyı Güncelle" CssClass="btn btn-outline-success btn-md" OnClick="btnUserUpdate_Click" ValidationGroup="UserValidate" /><br /><br />
-                                                     <asp:Button ID="btnVazgec" runat="server" Text="Vazgeç" CssClass="btn btn-outline-info btn-md" OnClick="btnVazgec_Click" />
+                                                    <asp:FileUpload ID="FileUploadProfileImage" runat="server" CssClass="btn btn-success" Style="width: 110px;" ValidationGroup="UserValidate" /><br />
+                                                    <br />
+                                                    <asp:Button ID="btnUserUpdate" runat="server" Text="Kullanıcıyı Güncelle" CssClass="btn btn-outline-success btn-md" OnClick="btnUserUpdate_Click" ValidationGroup="UserValidate" /><br />
+                                                    <br />
+                                                    <asp:Button ID="btnVazgec" runat="server" Text="Vazgeç" CssClass="btn btn-outline-info btn-md" OnClick="btnVazgec_Click" />
                                                 </div>
                                             </div>
 
@@ -203,7 +205,7 @@
             </Panes>
         </ajaxToolkit:Accordion>
     </div>
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             var rows = $("#ContentPlaceHolder1_gvUsers").find("tr").length - 1;
             $("#ContentPlaceHolder1_gvUsers_cbxAllDelete").click(function () {

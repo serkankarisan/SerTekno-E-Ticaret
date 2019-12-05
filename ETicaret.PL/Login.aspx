@@ -16,14 +16,14 @@
         <div class="col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4 offset-1 offset-sm-1 offset-md-3 offset-lg-4 offset-xl-4 pt-5">
             <form runat="server">
                 <h3 class="text-center text-success">Giriş Yap</h3>
-                 <asp:Panel ID="pnlDivAlert" runat="server" CssClass="alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
-                    </asp:Panel>
-                    <asp:Panel ID="pnlAlertSuccesRegister" runat="server" CssClass="alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <asp:Label ID="lblRegSucces" runat="server" Text=""></asp:Label>
-                    </asp:Panel>
+                <asp:Panel ID="pnlDivAlert" runat="server" CssClass="alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <asp:Label ID="lblAlert" runat="server" Text=""></asp:Label>
+                </asp:Panel>
+                <asp:Panel ID="pnlAlertSuccesRegister" runat="server" CssClass="alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" role="alert" Visible="False">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <asp:Label ID="lblRegSucces" runat="server" Text=""></asp:Label>
+                </asp:Panel>
                 <div class="form-group">
                     <asp:Label ID="lblUsername" runat="server" Text="Email" for="txtUsername" CssClass="text-success"></asp:Label><br />
                     <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" name="txtUsername"></asp:TextBox>

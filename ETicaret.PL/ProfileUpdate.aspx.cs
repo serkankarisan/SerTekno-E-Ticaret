@@ -1,11 +1,8 @@
 ﻿using ETicaret.Entity.Identity;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ETicaret.PL
 {
@@ -14,7 +11,7 @@ namespace ETicaret.PL
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!User.Identity.IsAuthenticated)
-            {                
+            {
                 General.LastUrl = Request.Url.ToString();
                 Response.Redirect("http://localhost:51010/Login.aspx");
             }
@@ -40,14 +37,16 @@ namespace ETicaret.PL
                     ddlGender.Text = user.Gender;
                 }
             }
-        }        
+        }
 
         protected void btnProfileUpdate_Click(object sender, EventArgs e)
         {
-                string UserID = User.Identity.GetUserId();
-                AppUser user = General.Service.UserManager.FindById(UserID);
-                user.UserName = txtEmail.Text.Trim();
-                if (General.Service.UserManager.Users.Where(u => u.UserName == user.UserName && u.Id!=UserID).FirstOrDefault() == null)
+            string UserID = User.Identity.GetUserId();
+            AppUser user = General.Service.UserManager.FindById(UserID);
+            user.UserName = txtEmail.Text.Trim();
+            if (General.Service.UserManager.Users.Where(u => u.UserName == user.UserName && u.Id != UserID).FirstOrDefault() == null)
+            {
+                try
                 {
                     user.Adress = txtAdress.Text.Trim();
                     user.AdressZipCode = Convert.ToInt32(txtZipCode.Text.Trim());
@@ -69,12 +68,20 @@ namespace ETicaret.PL
                         string hata = result.Errors.FirstOrDefault();
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    lblAlert.Text = "Kayıt <strong>Başarısız</strong>. Bu Email daha önce kullanılmış!";
+                    string hata = ex.Message;
+                    pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlDivAlert.Visible = true;
-                    txtEmail.Focus();
                 }
+            }
+            else
+            {
+                lblAlert.Text = "Kayıt <strong>Başarısız</strong>. Bu Email daha önce kullanılmış!";
+                pnlDivAlert.Visible = true;
+                txtEmail.Focus();
+            }
         }
     }
 }

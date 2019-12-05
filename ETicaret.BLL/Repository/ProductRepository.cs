@@ -1,9 +1,6 @@
 ﻿using ETicaret.Entity.Entity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaret.BLL.Repository
 {
@@ -54,7 +51,7 @@ namespace ETicaret.BLL.Repository
             {
                 ProductList.Add(pr);
             }
-            foreach (var bp in br.Select().Where(w=>w.BrandName.ToLower().Contains(Search.ToLower())).ToList())
+            foreach (var bp in br.Select().Where(w => w.BrandName.ToLower().Contains(Search.ToLower())).ToList())
             {
                 foreach (var mp in mr.ListByBrandId(bp.Id))
                 {
@@ -65,7 +62,7 @@ namespace ETicaret.BLL.Repository
                             ProductList.Add(pr);
                         }
                     }
-                }                        
+                }
             }
             foreach (var mp in mr.Select().Where(w => w.ModelName.ToLower().Contains(Search.ToLower())).ToList())
             {

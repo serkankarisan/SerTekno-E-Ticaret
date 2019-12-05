@@ -2,11 +2,6 @@
 using ETicaret.Entity.Identity;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 
 namespace ETicaret.PL
 {
@@ -19,30 +14,38 @@ namespace ETicaret.PL
                 ent.Database.CreateIfNotExists();
                 if (General.Service.UserManager.FindByName("serkankarisan1905@gmail.com") == null)
                 {
-                    AppUser AppUserAdmin = new AppUser() { Name = "Serkan", SurName = "Karışan", Email = "serkankarisan1905@gmail.com", UserName = "serkankarisan1905@gmail.com", EmailConfirmed = true, SecurityStamp = "d6b253a0-6325-410b-bed4-796ba916e443", PhoneNumber = "5355063330", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, Adress = "Sancaktepe/Istanbul", AdressZipCode = 34795, Province = "Istanbul", District = "Sancaktepe", Gender = "Erkek", ProfileImage = "Images/profile-icon-png-917.png" };
-                    IdentityResult result = General.Service.UserManager.Create(AppUserAdmin, "123Qw.");
-                    if (result.Succeeded)
+                    try
                     {
-                        if (General.Service.RoleManager.FindByName("Admin") != null)
+                        AppUser AppUserAdmin = new AppUser() { Name = "Serkan", SurName = "Karışan", Email = "serkankarisan1905@gmail.com", UserName = "serkankarisan1905@gmail.com", EmailConfirmed = true, SecurityStamp = "d6b253a0-6325-410b-bed4-796ba916e443", PhoneNumber = "5355063330", PhoneNumberConfirmed = true, TwoFactorEnabled = false, LockoutEndDateUtc = null, LockoutEnabled = false, AccessFailedCount = 0, Adress = "Sancaktepe/Istanbul", AdressZipCode = 34795, Province = "Istanbul", District = "Sancaktepe", Gender = "Erkek", ProfileImage = "Images/profile-icon-png-917.png" };
+                        IdentityResult result = General.Service.UserManager.Create(AppUserAdmin, "123Qw.");
+                        if (result.Succeeded)
                         {
-                            AppRole Rol = General.Service.RoleManager.FindByName("Admin");
-                            var currentUser = General.Service.UserManager.FindByName(AppUserAdmin.UserName);
-                            General.Service.UserManager.AddToRole(currentUser.Id, "Admin");
+                            if (General.Service.RoleManager.FindByName("Admin") != null)
+                            {
+                                AppRole Rol = General.Service.RoleManager.FindByName("Admin");
+                                var currentUser = General.Service.UserManager.FindByName(AppUserAdmin.UserName);
+                                General.Service.UserManager.AddToRole(currentUser.Id, "Admin");
+                            }
+                            else
+                            {
+                                AppRole appRole = new AppRole();
+                                appRole.Name = "Admin";
+                                General.Service.RoleManager.Create(appRole);
+                                var currentUser = General.Service.UserManager.FindByName(AppUserAdmin.UserName);
+                                General.Service.UserManager.AddToRole(currentUser.Id, "Admin");
+                            }
+                            if (General.Service.RoleManager.FindByName("User") == null)
+                            {
+                                AppRole appRole = new AppRole();
+                                appRole.Name = "User";
+                                General.Service.RoleManager.Create(appRole);
+                            }
                         }
-                        else
-                        {
-                            AppRole appRole = new AppRole();
-                            appRole.Name = "Admin";
-                            General.Service.RoleManager.Create(appRole);
-                            var currentUser = General.Service.UserManager.FindByName(AppUserAdmin.UserName);
-                            General.Service.UserManager.AddToRole(currentUser.Id, "Admin");
-                        }
-                        if (General.Service.RoleManager.FindByName("User") == null)
-                        {
-                            AppRole appRole = new AppRole();
-                            appRole.Name = "User";
-                            General.Service.RoleManager.Create(appRole);
-                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        throw;
                     }
                 }
             }

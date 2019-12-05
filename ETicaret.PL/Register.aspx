@@ -38,7 +38,7 @@
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorEmail" runat="server" ErrorMessage="Email girmelisiniz!" ControlToValidate="txtEmail" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic"></asp:RequiredFieldValidator>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ErrorMessage="Geçerli bir Email girmelisiniz!" ControlToValidate="txtEmail" ForeColor="#990000" SetFocusOnError="True" ValidationExpression="[\w-]+@([\w-]+\.)+[\w-]+" Display="Dynamic"></asp:RegularExpressionValidator>
                         </div>
-                         <div class="form-group">
+                        <div class="form-group">
                             <asp:Label ID="lblPhoneNumber" runat="server" Text="Telefon( 5XXXXXXXXX )" for="txtPhoneNumber" CssClass="text-success"></asp:Label><br />
                             <asp:TextBox ID="txtPhoneNumber" runat="server" CssClass="form-control" name="txtPhoneNumber" MaxLength="10"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidatorPhoneNumber" runat="server" ErrorMessage="Telefon numarası girmelisiniz!" ControlToValidate="txtPhoneNumber" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic"></asp:RequiredFieldValidator>

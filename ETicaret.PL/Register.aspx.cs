@@ -1,11 +1,7 @@
 ﻿using ETicaret.Entity.Identity;
 using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ETicaret.PL
@@ -27,7 +23,7 @@ namespace ETicaret.PL
 
                 AppUser user = new AppUser();
                 user.UserName = txtEmail.Text.Trim();
-                if (General.Service.UserManager.Users.Where(u => u.UserName == user.UserName).FirstOrDefault()==null)
+                if (General.Service.UserManager.Users.Where(u => u.UserName == user.UserName).FirstOrDefault() == null)
                 {
                     user.Adress = txtAdress.Text.Trim();
                     user.AdressZipCode = Convert.ToInt32(txtZipCode.Text.Trim());
@@ -41,30 +37,39 @@ namespace ETicaret.PL
                     user.ProfileImage = "Images/profile-icon-png-917.png";
                     //user.PhoneNumberConfirmed = true;
                     //user.EmailConfirmed = true;
-
-                    IdentityResult result = General.Service.UserManager.Create(user, txtPassword.Text.Trim());
-                    if (result.Succeeded)
+                    try
                     {
-                        if (General.Service.RoleManager.FindByName("User") != null)
+                        IdentityResult result = General.Service.UserManager.Create(user, txtPassword.Text.Trim());
+                        if (result.Succeeded)
                         {
-                            AppRole Rol = General.Service.RoleManager.FindByName("User");
-                            var currentUser = General.Service.UserManager.FindByName(user.UserName);
-                            General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                            if (General.Service.RoleManager.FindByName("User") != null)
+                            {
+                                AppRole Rol = General.Service.RoleManager.FindByName("User");
+                                var currentUser = General.Service.UserManager.FindByName(user.UserName);
+                                General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                            }
+                            else
+                            {
+                                AppRole appRole = new AppRole();
+                                appRole.Name = "User";
+                                General.Service.RoleManager.Create(appRole);
+                                var currentUser = General.Service.UserManager.FindByName(user.UserName);
+                                General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                            }
+                            General.LastUrl = "http://localhost:51010/Register.aspx";
+                            Response.Redirect("~/Login.aspx?UserName=" + user.UserName);
                         }
                         else
                         {
-                            AppRole appRole = new AppRole();
-                            appRole.Name = "User";
-                            General.Service.RoleManager.Create(appRole);
-                            var currentUser = General.Service.UserManager.FindByName(user.UserName);
-                            General.Service.UserManager.AddToRole(currentUser.Id, "User");
+                            string hata = result.Errors.FirstOrDefault();
                         }
-                        General.LastUrl = "http://localhost:51010/Register.aspx";
-                        Response.Redirect("~/Login.aspx?UserName=" + user.UserName);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        string hata = result.Errors.FirstOrDefault();
+                        string hata = ex.Message;
+                        pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlDivAlert.Visible = true;
                     }
                 }
                 else

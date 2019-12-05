@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ETicaret.PL.Models
+﻿namespace ETicaret.PL.Models
 {
     public class ProductViewModel
     {

@@ -1,16 +1,11 @@
 ﻿using ETicaret.Entity.Identity;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaret.Entity.Entity
 {
     [Table("ProductComment")]
-    public class ProductComment:EntityBase
+    public class ProductComment : EntityBase
     {
         private string _content;
 

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -156,33 +155,43 @@ namespace ETicaret.PL
             br.BrandName = txtModalBrand.Text.Trim();
             if (!General.Service.Brand.ControlByBrandName(br.BrandName))
             {
-                if (General.Service.Brand.Insert(br) > 0)
+                try
                 {
-                    ddlBrand.DataSource = General.Service.Brand.Select();
-                    ddlBrand.DataValueField = "Id";
-                    ddlBrand.DataTextField = "BrandName";
-                    ddlBrand.DataBind();
-                    ddlModalModelBrand.DataSource = General.Service.Brand.Select();
-                    ddlModalModelBrand.DataValueField = "Id";
-                    ddlModalModelBrand.DataTextField = "BrandName";
-                    ddlModalModelBrand.DataBind();
-                    ddlModel.DataSource = General.Service.Model.ListByBrandId(General.Service.Brand.SelectByBrandName(br.BrandName).Id);
-                    ddlModel.DataValueField = "Id";
-                    ddlModel.DataTextField = "ModelName";
-                    ddlModel.DataBind();
-                    AccordionProduct.SelectedIndex = 1;
-                    ddlBrand.SelectedValue = ddlBrand.Items.FindByText(br.BrandName).Value;
-                    ddlModalModelBrand.SelectedValue = ddlModalModelBrand.Items.FindByText(br.BrandName).Value;
-                    pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Marka Başarıyla Kaydedildi.";
-                    pnlAlertDiv.Visible = true;
-                    txtModalBrand.Text = "";
+                    if (General.Service.Brand.Insert(br) > 0)
+                    {
+                        ddlBrand.DataSource = General.Service.Brand.Select();
+                        ddlBrand.DataValueField = "Id";
+                        ddlBrand.DataTextField = "BrandName";
+                        ddlBrand.DataBind();
+                        ddlModalModelBrand.DataSource = General.Service.Brand.Select();
+                        ddlModalModelBrand.DataValueField = "Id";
+                        ddlModalModelBrand.DataTextField = "BrandName";
+                        ddlModalModelBrand.DataBind();
+                        ddlModel.DataSource = General.Service.Model.ListByBrandId(General.Service.Brand.SelectByBrandName(br.BrandName).Id);
+                        ddlModel.DataValueField = "Id";
+                        ddlModel.DataTextField = "ModelName";
+                        ddlModel.DataBind();
+                        AccordionProduct.SelectedIndex = 1;
+                        ddlBrand.SelectedValue = ddlBrand.Items.FindByText(br.BrandName).Value;
+                        ddlModalModelBrand.SelectedValue = ddlModalModelBrand.Items.FindByText(br.BrandName).Value;
+                        pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Marka Başarıyla Kaydedildi.";
+                        pnlAlertDiv.Visible = true;
+                        txtModalBrand.Text = "";
+                    }
+                    else
+                    {
+                        AccordionProduct.SelectedIndex = 1;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    AccordionProduct.SelectedIndex = 1;
+                    string hata = ex.Message;
                     pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlAlertDiv.Visible = true;
                 }
             }
@@ -205,35 +214,45 @@ namespace ETicaret.PL
             mdl.BrandId = Convert.ToInt32(ddlModalModelBrand.SelectedItem.Value);
             if (!General.Service.Model.ControlByModelName(mdl.ModelName))
             {
-                if (General.Service.Model.Insert(mdl) > 0)
+                try
                 {
-                    ddlBrand.DataSource = General.Service.Brand.Select();
-                    ddlBrand.DataValueField = "Id";
-                    ddlBrand.DataTextField = "BrandName";
-                    ddlBrand.DataBind();
+                    if (General.Service.Model.Insert(mdl) > 0)
+                    {
+                        ddlBrand.DataSource = General.Service.Brand.Select();
+                        ddlBrand.DataValueField = "Id";
+                        ddlBrand.DataTextField = "BrandName";
+                        ddlBrand.DataBind();
 
-                    ddlModalModelBrand.DataSource = General.Service.Brand.Select();
-                    ddlModalModelBrand.DataValueField = "Id";
-                    ddlModalModelBrand.DataTextField = "BrandName";
-                    ddlModalModelBrand.DataBind();
+                        ddlModalModelBrand.DataSource = General.Service.Brand.Select();
+                        ddlModalModelBrand.DataValueField = "Id";
+                        ddlModalModelBrand.DataTextField = "BrandName";
+                        ddlModalModelBrand.DataBind();
 
-                    ddlModel.DataSource = General.Service.Model.ListByBrandId(mdl.BrandId);
-                    ddlModel.DataValueField = "Id";
-                    ddlModel.DataTextField = "ModelName";
-                    ddlModel.DataBind();
-                    AccordionProduct.SelectedIndex = 1;
-                    ddlModel.SelectedValue = ddlModel.Items.FindByText(mdl.ModelName).Value;
-                    ddlBrand.SelectedValue = ddlBrand.Items.FindByText(General.Service.Brand.SelectById(mdl.BrandId).BrandName).Value;
-                    pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Model Başarıyla Kaydedildi.";
-                    pnlAlertDiv.Visible = true;
-                    txtModalModel.Text = "";
+                        ddlModel.DataSource = General.Service.Model.ListByBrandId(mdl.BrandId);
+                        ddlModel.DataValueField = "Id";
+                        ddlModel.DataTextField = "ModelName";
+                        ddlModel.DataBind();
+                        AccordionProduct.SelectedIndex = 1;
+                        ddlModel.SelectedValue = ddlModel.Items.FindByText(mdl.ModelName).Value;
+                        ddlBrand.SelectedValue = ddlBrand.Items.FindByText(General.Service.Brand.SelectById(mdl.BrandId).BrandName).Value;
+                        pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Model Başarıyla Kaydedildi.";
+                        pnlAlertDiv.Visible = true;
+                        txtModalModel.Text = "";
+                    }
+                    else
+                    {
+                        AccordionProduct.SelectedIndex = 1;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    AccordionProduct.SelectedIndex = 1;
+                    string hata = ex.Message;
                     pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlAlertDiv.Visible = true;
                 }
             }
@@ -266,35 +285,45 @@ namespace ETicaret.PL
             c.CategoryName = txtModalCategory.Text.Trim();
             if (!General.Service.Category.ControlByCategoryName(c.CategoryName))
             {
-                if (General.Service.Category.Insert(c) > 0)
+                try
                 {
-                    ddlCategory.DataSource = General.Service.Category.Select();
-                    ddlCategory.DataValueField = "Id";
-                    ddlCategory.DataTextField = "CategoryName";
-                    ddlCategory.DataBind();
+                    if (General.Service.Category.Insert(c) > 0)
+                    {
+                        ddlCategory.DataSource = General.Service.Category.Select();
+                        ddlCategory.DataValueField = "Id";
+                        ddlCategory.DataTextField = "CategoryName";
+                        ddlCategory.DataBind();
 
-                    ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
-                    ddlModalSubCategoryCategory.DataValueField = "Id";
-                    ddlModalSubCategoryCategory.DataTextField = "CategoryName";
-                    ddlModalSubCategoryCategory.DataBind();
+                        ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
+                        ddlModalSubCategoryCategory.DataValueField = "Id";
+                        ddlModalSubCategoryCategory.DataTextField = "CategoryName";
+                        ddlModalSubCategoryCategory.DataBind();
 
-                    ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
-                    ddlSubCategory.DataValueField = "Id";
-                    ddlSubCategory.DataTextField = "SubCategoryName";
-                    ddlSubCategory.DataBind();
-                    AccordionProduct.SelectedIndex = 1;
-                    ddlCategory.SelectedValue = ddlCategory.Items.FindByText(c.CategoryName).Value;
-                    ddlModalSubCategoryCategory.SelectedValue = ddlModalSubCategoryCategory.Items.FindByText(c.CategoryName).Value;
-                    pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Kategori Başarıyla Kaydedildi.";
-                    pnlAlertDiv.Visible = true;
-                    txtModalBrand.Text = "";
+                        ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(Convert.ToInt32(ddlCategory.SelectedItem.Value));
+                        ddlSubCategory.DataValueField = "Id";
+                        ddlSubCategory.DataTextField = "SubCategoryName";
+                        ddlSubCategory.DataBind();
+                        AccordionProduct.SelectedIndex = 1;
+                        ddlCategory.SelectedValue = ddlCategory.Items.FindByText(c.CategoryName).Value;
+                        ddlModalSubCategoryCategory.SelectedValue = ddlModalSubCategoryCategory.Items.FindByText(c.CategoryName).Value;
+                        pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Kategori Başarıyla Kaydedildi.";
+                        pnlAlertDiv.Visible = true;
+                        txtModalBrand.Text = "";
+                    }
+                    else
+                    {
+                        AccordionProduct.SelectedIndex = 1;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    AccordionProduct.SelectedIndex = 1;
+                    string hata = ex.Message;
                     pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlAlertDiv.Visible = true;
                 }
             }
@@ -316,35 +345,45 @@ namespace ETicaret.PL
             sc.CategoryId = Convert.ToInt32(ddlModalSubCategoryCategory.SelectedItem.Value);
             if (!General.Service.SubCategory.ControlBySubCategoryName(sc.SubCategoryName))
             {
-                if (General.Service.SubCategory.Insert(sc) > 0)
+                try
                 {
-                    ddlCategory.DataSource = General.Service.Category.Select();
-                    ddlCategory.DataValueField = "Id";
-                    ddlCategory.DataTextField = "CategoryName";
-                    ddlCategory.DataBind();
+                    if (General.Service.SubCategory.Insert(sc) > 0)
+                    {
+                        ddlCategory.DataSource = General.Service.Category.Select();
+                        ddlCategory.DataValueField = "Id";
+                        ddlCategory.DataTextField = "CategoryName";
+                        ddlCategory.DataBind();
 
-                    ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
-                    ddlModalSubCategoryCategory.DataValueField = "Id";
-                    ddlModalSubCategoryCategory.DataTextField = "CategoryName";
-                    ddlModalSubCategoryCategory.DataBind();
+                        ddlModalSubCategoryCategory.DataSource = General.Service.Category.Select();
+                        ddlModalSubCategoryCategory.DataValueField = "Id";
+                        ddlModalSubCategoryCategory.DataTextField = "CategoryName";
+                        ddlModalSubCategoryCategory.DataBind();
 
-                    ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(sc.CategoryId);
-                    ddlSubCategory.DataValueField = "Id";
-                    ddlSubCategory.DataTextField = "SubCategoryName";
-                    ddlSubCategory.DataBind();
-                    AccordionProduct.SelectedIndex = 1;
-                    ddlSubCategory.SelectedValue = ddlSubCategory.Items.FindByText(sc.SubCategoryName).Value;
-                    ddlCategory.SelectedValue = ddlCategory.Items.FindByText(General.Service.Category.SelectById(sc.CategoryId).CategoryName).Value;
-                    pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Alt Kategori Başarıyla Kaydedildi.";
-                    pnlAlertDiv.Visible = true;
-                    txtModalModel.Text = "";
+                        ddlSubCategory.DataSource = General.Service.SubCategory.ListByCategoryId(sc.CategoryId);
+                        ddlSubCategory.DataValueField = "Id";
+                        ddlSubCategory.DataTextField = "SubCategoryName";
+                        ddlSubCategory.DataBind();
+                        AccordionProduct.SelectedIndex = 1;
+                        ddlSubCategory.SelectedValue = ddlSubCategory.Items.FindByText(sc.SubCategoryName).Value;
+                        ddlCategory.SelectedValue = ddlCategory.Items.FindByText(General.Service.Category.SelectById(sc.CategoryId).CategoryName).Value;
+                        pnlAlertDiv.CssClass = "alert alert-success alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarılı</strong>. Alt Kategori Başarıyla Kaydedildi.";
+                        pnlAlertDiv.Visible = true;
+                        txtModalModel.Text = "";
+                    }
+                    else
+                    {
+                        AccordionProduct.SelectedIndex = 1;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    AccordionProduct.SelectedIndex = 1;
+                    string hata = ex.Message;
                     pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlertDiv.Text = "<strong>Kayıt Başarısız</strong>! Yeniden işlem yapmayı deneyin!";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlAlertDiv.Visible = true;
                 }
             }
@@ -379,14 +418,24 @@ namespace ETicaret.PL
                 CheckBox Secilimi = (CheckBox)row.FindControl("cbxSelectDelete");
                 if (Secilimi.Checked)
                 {
-                    selected = true;
-                    int ID = Convert.ToInt32(gvProduct.DataKeys[row.RowIndex].Value);
-                    foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+                    try
                     {
-                        File.Delete(MapPath(img.ImagesPath));
-                        General.Service.ProductImage.Delete(img.Id);
+                        selected = true;
+                        int ID = Convert.ToInt32(gvProduct.DataKeys[row.RowIndex].Value);
+                        foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+                        {
+                            File.Delete(MapPath(img.ImagesPath));
+                            General.Service.ProductImage.Delete(img.Id);
+                        }
+                        General.Service.Product.Delete(ID);
                     }
-                    General.Service.Product.Delete(ID);
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
             }
             if (selected)
@@ -447,24 +496,36 @@ namespace ETicaret.PL
                 gvProduct.DataSource = General.ProductListToProductViewList(General.Service.Product.Select());
                 gvProduct.DataBind();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                string hata = ex.Message;
+                pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                pnlAlertDiv.Visible = true;
             }
         }
 
         protected void gvProduct_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            pnlAlertDivAccordionEdit.Visible = false;
-            gvProduct.EditIndex = -1;
-            int ID = Convert.ToInt32(gvProduct.DataKeys[e.RowIndex].Value);
-            foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+            try
             {
-                File.Delete(MapPath(img.ImagesPath));
-                General.Service.ProductImage.Delete(img.Id);
+                pnlAlertDivAccordionEdit.Visible = false;
+                gvProduct.EditIndex = -1;
+                int ID = Convert.ToInt32(gvProduct.DataKeys[e.RowIndex].Value);
+                foreach (ProductImage img in General.Service.ProductImage.ListByProductID(ID))
+                {
+                    File.Delete(MapPath(img.ImagesPath));
+                    General.Service.ProductImage.Delete(img.Id);
+                }
+                General.Service.Product.Delete(ID);
             }
-            General.Service.Product.Delete(ID);
+            catch (Exception ex)
+            {
+                string hata = ex.Message;
+                pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                pnlAlertDiv.Visible = true;
+            }
             pnlAlertDivAccordionEdit.CssClass = "alert alert-warning alert-dismissible text-center";
             lblAlertDivAccordionEdit.Text = "<strong>İşlem Başarılı</strong>. Ürün Başarıyla Silindi.";
             pnlAlertDivAccordionEdit.Visible = true;

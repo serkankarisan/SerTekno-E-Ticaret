@@ -2,10 +2,8 @@
 using ETicaret.Entity.Entity;
 using ETicaret.Entity.Identity;
 using ETicaret.PL.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace ETicaret.PL
 {
@@ -31,11 +29,11 @@ namespace ETicaret.PL
                 productView.Price = product.Price;
                 productView.ProductCode = product.ProductCode;
                 productView.ProductCommentsCount = General.Service.ProductComment.ListByProductId(product.Id).Count();
-                productView.ProductCoverImages = General.Service.ProductImage.Select().Where(p => p.ImageType == "Cover" && p.ProductId==product.Id).Select(p => p.ImagesPath).FirstOrDefault();
+                productView.ProductCoverImages = General.Service.ProductImage.Select().Where(p => p.ImageType == "Cover" && p.ProductId == product.Id).Select(p => p.ImagesPath).FirstOrDefault();
                 productView.ProductName = product.ProductName;
                 productView.Properties = product.Properties;
                 productView.StockCount = product.StockCount;
-                productView.SubCategoryName =General.Service.SubCategory.SelectById(product.SubCategoryId).SubCategoryName;
+                productView.SubCategoryName = General.Service.SubCategory.SelectById(product.SubCategoryId).SubCategoryName;
                 productView.WarrantyYearCount = product.WarrantyYearCount;
                 productView.CategoryName = General.Service.Category.SelectById(General.Service.SubCategory.SelectById(product.SubCategoryId).CategoryId).CategoryName;
                 productView.BrandName = General.Service.Brand.SelectById(General.Service.Model.SelectById(product.ModelId).BrandId).BrandName;

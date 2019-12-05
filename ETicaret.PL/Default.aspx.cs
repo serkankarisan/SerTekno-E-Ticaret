@@ -4,7 +4,6 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -109,7 +108,7 @@ namespace ETicaret.PL
             lvProduct.DataBind();
             lvProductSmall.DataSource = ProductViewList;
             lvProductSmall.DataBind();
-            if (ProductViewList.Count==0)
+            if (ProductViewList.Count == 0)
             {
                 pnlContent.Visible = false;
                 pnlSmall.Visible = false;
@@ -124,7 +123,7 @@ namespace ETicaret.PL
                 pnlEmtyListSmall.Visible = false;
             }
         }
-       
+
         private List<ProductViewModel> FilterList()
         {
             List<Product> ProductFilterList = new List<Product>();
@@ -153,7 +152,7 @@ namespace ETicaret.PL
                         break;
                     }
                 }
-            }            
+            }
             if (CatFilterSelected)
             {
                 foreach (var cb in pnlFilterCategory.Controls)

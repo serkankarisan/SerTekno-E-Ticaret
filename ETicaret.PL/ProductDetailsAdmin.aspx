@@ -309,7 +309,7 @@
             $(".btnImageDeleteModalCancel").click(function () {
                 var ImgIdList = new Array();
                 '<%Session["ImgIdList"] = "' + ImgIdList + '"; %>';
-               
+
             });
         });
     </script>

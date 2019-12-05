@@ -98,8 +98,8 @@
                                 </li>
                             </ul>
                             <div class="form-inline my-2 my-lg-0">
-                                <asp:TextBox ID="AraTextboxMasterPage" runat="server" type="search" CssClass="form-control mr-sm-2" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search" ></asp:TextBox>
-                                <asp:Button ID="btnSearch" runat="server" Text="Ara" CssClass="btn btn-outline-success my-2 my-sm-0 text-siyah" OnClick="btnSearch_Click"/>
+                                <asp:TextBox ID="AraTextboxMasterPage" runat="server" type="search" CssClass="form-control mr-sm-2" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search"></asp:TextBox>
+                                <asp:Button ID="btnSearch" runat="server" Text="Ara" CssClass="btn btn-outline-success my-2 my-sm-0 text-siyah" OnClick="btnSearch_Click" />
                             </div>
                         </div>
                     </nav>
@@ -120,12 +120,12 @@
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                 <div class="footer-pad">
                                     <a href="Contact.aspx" class="h5">İletişim</a><br />
-                                    <span class="footertextcontent"> 
-                                        Telefon: 0216 311 37 1905(örn.)<br />
+                                    <span class="footertextcontent">Telefon: 0216 311 37 1905(örn.)<br />
                                         Adres: Sancaktepe İstanbul<br />
                                         Email: serkankarisan1905@gmail.com<br />
                                     </span>
-                                </div><br />
+                                </div>
+                                <br />
                             </div>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                                 <div class="footer-pad">
@@ -133,7 +133,9 @@
                                     <span class="footertextcontent">2019 tarihinden itibaren hizmet vermekte olan firmamız Serkan Karışan tarafından oluşturulmuştur.(örn.)
                                     </span>
                                 </div>
-                            </div><br /><br />
+                            </div>
+                            <br />
+                            <br />
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 pb-3 text-center">
                                 <h4>Sosyal Medya</h4>
                                 <ul class="social-network social-circle">

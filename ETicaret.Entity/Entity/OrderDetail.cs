@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaret.Entity.Entity
 {
     [Table("OrderDetail")]
-    public class OrderDetail:EntityBase
+    public class OrderDetail : EntityBase
     {
         private int _count;
         private decimal _unitPrice;

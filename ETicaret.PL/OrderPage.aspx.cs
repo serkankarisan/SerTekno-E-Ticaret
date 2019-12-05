@@ -4,8 +4,6 @@ using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ETicaret.PL
@@ -72,30 +70,40 @@ namespace ETicaret.PL
             {
                 if (Session["basket"] != null)
                 {
-                    BasketItem bskt = new BasketItem();
-                    List<BasketItem> MyBasket = (List<BasketItem>)Session["basket"];
-                    Order order = new Order();
-                    order.UserId = User.Identity.GetUserId();
-                    order.TotalProductCount = bskt.TotalCount(MyBasket);
-                    order.TotalPrice = bskt.TotalAnmount(MyBasket);
-                    order.DeliveryDate = DateTime.Now.AddDays(7);
-                    order.OrderCode = "PRDCT" + DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace(":", "") + DateTime.Now.Millisecond.ToString();
-                    General.Service.Order.Insert(order);
-                    foreach (BasketItem item in MyBasket)
+                    try
                     {
-                        OrderDetail od = new OrderDetail();
-                        od.OrderId = General.Service.Order.SelectByOrderCode(order.OrderCode).Id;
-                        od.Amount = item.Amount;
-                        od.Count = item.Count;
-                        od.ProductId = item.ProductId;
-                        od.UnitPrice = item.UnitPrice;
-                        General.Service.OrderDetail.Insert(od);
+                        BasketItem bskt = new BasketItem();
+                        List<BasketItem> MyBasket = (List<BasketItem>)Session["basket"];
+                        Order order = new Order();
+                        order.UserId = User.Identity.GetUserId();
+                        order.TotalProductCount = bskt.TotalCount(MyBasket);
+                        order.TotalPrice = bskt.TotalAnmount(MyBasket);
+                        order.DeliveryDate = DateTime.Now.AddDays(7);
+                        order.OrderCode = "PRDCT" + DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace(":", "") + DateTime.Now.Millisecond.ToString();
+                        General.Service.Order.Insert(order);
+                        foreach (BasketItem item in MyBasket)
+                        {
+                            OrderDetail od = new OrderDetail();
+                            od.OrderId = General.Service.Order.SelectByOrderCode(order.OrderCode).Id;
+                            od.Amount = item.Amount;
+                            od.Count = item.Count;
+                            od.ProductId = item.ProductId;
+                            od.UnitPrice = item.UnitPrice;
+                            General.Service.OrderDetail.Insert(od);
+                        }
+                        Session["basket"] = null;
+                        Session["totalcount"] = null;
+                        Session["totalamount"] = null;
+                        General.LastUrl = Request.Url.ToString();
+                        Response.Redirect("http://localhost:51010/UserProfile.aspx");
                     }
-                    Session["basket"] = null;
-                    Session["totalcount"] = null;
-                    Session["totalamount"] = null;
-                    General.LastUrl = Request.Url.ToString();
-                    Response.Redirect("http://localhost:51010/UserProfile.aspx");
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlDivAlert.Visible = true;
+                    }
                 }
             }
             else

@@ -80,7 +80,7 @@ namespace ETicaret.PL
                             }
                         }
                         string Li = "<ol id=\"indicatorPrdct\" class=\"" + "carousel-indicators\">" + "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + "0\"" + " class=\"" + " active\"" + "></li>";
-                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count ; i++)
+                        for (int i = 1; i < General.Service.ProductImage.ListByProductID(ProductID).Count; i++)
                         {
                             Li += "<li data-target=\"" + "#pnlcarouselProductIndicators\" " + "data-slide-to=\"" + i + "\"" + "></li>";
                         }
@@ -219,31 +219,41 @@ namespace ETicaret.PL
         {
             if (User.Identity.IsAuthenticated)
             {
-                ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
-                string UserID = User.Identity.GetUserId();
-                ProductEvaluation pe = General.Service.ProductEvaluation.GetProductEvaluationByUser(UserID, ProductID);
-                if (pe == null)
+                try
                 {
-                    pe = new ProductEvaluation();
-                    pe.UserId = UserID;
-                    pe.ProductId = ProductID;
-                    pe.Like = true;
-                    pe.DisLike = false;
-                    General.Service.ProductEvaluation.Insert(pe);
-                }
-                else
-                {
-                    if (pe.Like)
+                    ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+                    string UserID = User.Identity.GetUserId();
+                    ProductEvaluation pe = General.Service.ProductEvaluation.GetProductEvaluationByUser(UserID, ProductID);
+                    if (pe == null)
                     {
-                        pe.Like = false;
+                        pe = new ProductEvaluation();
+                        pe.UserId = UserID;
+                        pe.ProductId = ProductID;
+                        pe.Like = true;
                         pe.DisLike = false;
+                        General.Service.ProductEvaluation.Insert(pe);
                     }
                     else
                     {
-                        pe.Like = true;
-                        pe.DisLike = false;
+                        if (pe.Like)
+                        {
+                            pe.Like = false;
+                            pe.DisLike = false;
+                        }
+                        else
+                        {
+                            pe.Like = true;
+                            pe.DisLike = false;
+                        }
+                        General.Service.ProductEvaluation.Update(pe);
                     }
-                    General.Service.ProductEvaluation.Update(pe);
+                }
+                catch (Exception ex)
+                {
+                    string hata = ex.Message;
+                    pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                    pnlAlertDiv.Visible = true;
                 }
                 General.LastUrl = Request.Url.ToString();
                 Response.Redirect("http://localhost:51010/ProductDetailsAdmin.aspx?ProductId=" + ProductID);
@@ -260,31 +270,41 @@ namespace ETicaret.PL
         {
             if (User.Identity.IsAuthenticated)
             {
-                ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
-                string UserID = User.Identity.GetUserId();
-                ProductEvaluation pe = General.Service.ProductEvaluation.GetProductEvaluationByUser(UserID, ProductID);
-                if (pe == null)
+                try
                 {
-                    pe = new ProductEvaluation();
-                    pe.UserId = UserID;
-                    pe.ProductId = ProductID;
-                    pe.Like = false;
-                    pe.DisLike = true;
-                    General.Service.ProductEvaluation.Insert(pe);
-                }
-                else
-                {
-                    if (pe.DisLike)
+                    ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+                    string UserID = User.Identity.GetUserId();
+                    ProductEvaluation pe = General.Service.ProductEvaluation.GetProductEvaluationByUser(UserID, ProductID);
+                    if (pe == null)
                     {
+                        pe = new ProductEvaluation();
+                        pe.UserId = UserID;
+                        pe.ProductId = ProductID;
                         pe.Like = false;
-                        pe.DisLike = false;
+                        pe.DisLike = true;
+                        General.Service.ProductEvaluation.Insert(pe);
                     }
                     else
                     {
-                        pe.Like = false;
-                        pe.DisLike = true;
+                        if (pe.DisLike)
+                        {
+                            pe.Like = false;
+                            pe.DisLike = false;
+                        }
+                        else
+                        {
+                            pe.Like = false;
+                            pe.DisLike = true;
+                        }
+                        General.Service.ProductEvaluation.Update(pe);
                     }
-                    General.Service.ProductEvaluation.Update(pe);
+                }
+                catch (Exception ex)
+                {
+                    string hata = ex.Message;
+                    pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                    pnlAlertDiv.Visible = true;
                 }
                 General.LastUrl = Request.Url.ToString();
                 Response.Redirect("http://localhost:51010/ProductDetailsAdmin.aspx?ProductId=" + ProductID);
@@ -301,13 +321,23 @@ namespace ETicaret.PL
         {
             if (User.Identity.IsAuthenticated)
             {
-                ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
-                string UserID = User.Identity.GetUserId();
-                ProductComment pc = new ProductComment();
-                pc.ProductId = ProductID;
-                pc.UserId = UserID;
-                pc.Content = txtModalComment.Text.Trim();
-                General.Service.ProductComment.Insert(pc);
+                try
+                {
+                    ProductID = Convert.ToInt32(Request.QueryString["ProductId"]);
+                    string UserID = User.Identity.GetUserId();
+                    ProductComment pc = new ProductComment();
+                    pc.ProductId = ProductID;
+                    pc.UserId = UserID;
+                    pc.Content = txtModalComment.Text.Trim();
+                    General.Service.ProductComment.Insert(pc);
+                }
+                catch (Exception ex)
+                {
+                    string hata = ex.Message;
+                    pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                    pnlAlertDiv.Visible = true;
+                }
                 General.LastUrl = Request.Url.ToString();
                 Response.Redirect("http://localhost:51010/ProductDetailsAdmin.aspx?ProductId=" + ProductID);
             }
@@ -320,7 +350,17 @@ namespace ETicaret.PL
         }
         private void CommentDelete(int CommID)
         {
-            General.Service.ProductComment.Delete(CommID);
+            try
+            {
+                General.Service.ProductComment.Delete(CommID);
+            }
+            catch (Exception ex)
+            {
+                string hata = ex.Message;
+                pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                pnlAlertDiv.Visible = true;
+            }
         }
 
         protected void btnAddImages_Click(object sender, EventArgs e)
@@ -374,9 +414,19 @@ namespace ETicaret.PL
             {
                 foreach (string imgID in ImgIDlist)
                 {
-                    ProductImage img = General.Service.ProductImage.SelectById(Convert.ToInt32(imgID));
-                    File.Delete(MapPath(img.ImagesPath));
-                    General.Service.ProductImage.Delete(Convert.ToInt32(imgID));
+                    try
+                    {
+                        ProductImage img = General.Service.ProductImage.SelectById(Convert.ToInt32(imgID));
+                        File.Delete(MapPath(img.ImagesPath));
+                        General.Service.ProductImage.Delete(Convert.ToInt32(imgID));
+                    }
+                    catch (Exception ex)
+                    {
+                        string hata = ex.Message;
+                        pnlAlertDiv.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlertDiv.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                        pnlAlertDiv.Visible = true;
+                    }
                 }
                 List<ProductImage> ProductImageList = General.Service.ProductImage.Select().Where(p => p.ProductId == ProductID && p.ImageType != "Cover").ToList();
                 lvImagesDel.DataSource = ProductImageList;

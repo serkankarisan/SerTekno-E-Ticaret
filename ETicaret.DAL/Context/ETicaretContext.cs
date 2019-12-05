@@ -1,18 +1,13 @@
 ﻿using ETicaret.DAL.Migrations;
 using ETicaret.Entity.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaret.DAL.Context
 {
-    public class ETicaretContext:IdentityDbContext
+    public class ETicaretContext : IdentityDbContext
     {
-        public ETicaretContext():base("SerTeknoConnstr")
+        public ETicaretContext() : base("SerTeknoConnstr")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ETicaretContext, Configuration>("SerTeknoConnstr"));
         }

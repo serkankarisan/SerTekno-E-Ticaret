@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <span class="h5 row pt-5 pl-3">Öneriler</span><hr />
-                    <div class="row">                       
+                    <div class="row">
                         <asp:ListView ID="lvProductSmall" runat="server">
                             <ItemTemplate>
                                 <div class="col-6 col-sm-6 col-md-4 col-lg-6 col-xl-4 pt-3">

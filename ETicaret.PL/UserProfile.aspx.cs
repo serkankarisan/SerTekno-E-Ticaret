@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace ETicaret.PL
@@ -105,27 +104,37 @@ namespace ETicaret.PL
         {
             if (CustomValidatorPassword.ErrorMessage == "")
             {
-                string UserID = User.Identity.GetUserId();
-                AppUser user = General.Service.UserManager.FindById(UserID);
-                if (!General.Service.UserManager.CheckPassword(user, txtOldPassword.Text.Trim()))
+                try
                 {
-                    lblAlert.Text = "İşlem <strong>Başarısız</strong>. Mevcut şifren bu değil!";
-                    pnlDivAlert.Visible = true;
-                    txtOldPassword.Text = "";
+                    string UserID = User.Identity.GetUserId();
+                    AppUser user = General.Service.UserManager.FindById(UserID);
+                    if (!General.Service.UserManager.CheckPassword(user, txtOldPassword.Text.Trim()))
+                    {
+                        lblAlert.Text = "İşlem <strong>Başarısız</strong>. Mevcut şifren bu değil!";
+                        pnlDivAlert.Visible = true;
+                        txtOldPassword.Text = "";
+                    }
+                    else
+                    {
+                        IdentityResult result = General.Service.UserManager.ChangePassword(UserID, txtOldPassword.Text.Trim(), txtPassword.Text.Trim());
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        authenticationManager.SignOut();
+                        Session["basket"] = null;
+                        Session["totalcount"] = null;
+                        Session["totalamount"] = null;
+                        General.LastUrl = Request.Url.ToString();
+                        Response.Redirect("~/Login.aspx");
+                        txtOldPassword.Text = "";
+                        txtPassword.Text = "";
+                        txtRePassword.Text = "";
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    IdentityResult result = General.Service.UserManager.ChangePassword(UserID, txtOldPassword.Text.Trim(), txtPassword.Text.Trim());
-                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                    authenticationManager.SignOut();
-                    Session["basket"] = null;
-                    Session["totalcount"] = null;
-                    Session["totalamount"] = null;
-                    General.LastUrl = Request.Url.ToString();
-                    Response.Redirect("~/Login.aspx");
-                    txtOldPassword.Text = "";
-                    txtPassword.Text = "";
-                    txtRePassword.Text = "";
+                    string hata = ex.Message;
+                    pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                    lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
+                    pnlDivAlert.Visible = true;
                 }
             }
         }
@@ -162,16 +171,26 @@ namespace ETicaret.PL
                     lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlDivAlert.Visible = true;
                 }
-                IdentityResult ıdentityResult = General.Service.UserManager.Update(SelectedUser);
-                if (ıdentityResult.Succeeded)
+                try
                 {
-                    General.LastUrl = Request.Url.ToString();
-                    Response.Redirect("~/UserProfile.aspx");
+                    IdentityResult ıdentityResult = General.Service.UserManager.Update(SelectedUser);
+                    if (ıdentityResult.Succeeded)
+                    {
+                        General.LastUrl = Request.Url.ToString();
+                        Response.Redirect("~/UserProfile.aspx");
+                    }
+                    else
+                    {
+                        pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
+                        lblAlert.Text = "<strong>Kayıt Başarısız</strong>! " + ıdentityResult.Errors.FirstOrDefault() + "!";
+                        pnlDivAlert.Visible = true;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
+                    string hata = ex.Message;
                     pnlDivAlert.CssClass = "alert alert-danger alert-dismissible col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center";
-                    lblAlert.Text = "<strong>Kayıt Başarısız</strong>! " + ıdentityResult.Errors.FirstOrDefault() + "!";
+                    lblAlert.Text = "<strong>İşlem Başarısız</strong>! " + hata + "!";
                     pnlDivAlert.Visible = true;
                 }
             }

@@ -1,16 +1,11 @@
 ﻿using ETicaret.Entity.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ETicaret.Entity.Identity
 {
-    public class AppUser:IdentityUser
+    public class AppUser : IdentityUser
     {
         private string _name;
         private string _surName;
