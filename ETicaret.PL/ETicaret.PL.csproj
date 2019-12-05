@@ -176,6 +176,7 @@
     </Compile>
     <Compile Include="Models\BasketItem.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
+    <Compile Include="Models\OrderDetailView.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="OrderDetails.aspx.cs">
       <DependentUpon>OrderDetails.aspx</DependentUpon>

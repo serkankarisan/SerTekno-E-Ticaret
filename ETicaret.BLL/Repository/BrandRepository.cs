@@ -22,5 +22,14 @@ namespace ETicaret.BLL.Repository
             }
             return result;
         }
+        public Brand SelectByProductID(int ProductID)
+        {
+            ModelRepository mr = new ModelRepository();
+            ProductRepository pr = new ProductRepository();
+            int ModelID = pr.SelectById(ProductID).ModelId;
+            int BrandID = mr.SelectById(ModelID).BrandId;
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Id == BrandID);
+
+        }
     }
 }

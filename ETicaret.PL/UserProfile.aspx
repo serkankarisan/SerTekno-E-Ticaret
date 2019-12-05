@@ -39,13 +39,13 @@
                     <asp:ListView ID="lvOrders" runat="server">
                         <ItemTemplate>
                             <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 text-center">
-                                <div class="card mb-2">
+                                <div class="card mb-4">
                                     <span>Sipariş Tarihi</span>
                                     <span class="badge badge-pill badge-light"><%# Eval("AddedDate") %></span><br />
                                     <span>Toplam Ürün Sayısı</span>
                                     <span class="badge badge-pill badge-light"><%# Eval("TotalProductCount") %></span><br />
                                     <span>Toplam Fiyat</span>
-                                    <span class="badge badge-pill badge-light"><%# Eval("TotalPrice") %></span><br />
+                                    <span class="badge badge-pill badge-light"><%# Eval("TotalPrice","{0:c}") %></span><br />
                                     <span>Teslim Tarihi</span>
                                     <span class="badge badge-pill badge-light"><%# Eval("DeliveryDate", "{0:d}") %></span><br />
                                     <div class="row mb-2">

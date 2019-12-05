@@ -18,5 +18,14 @@ namespace ETicaret.BLL.Repository
             }
             return result;
         }
+        public Category SelectByProductID(int ProductID)
+        {
+            SubCategoryRepository scr = new SubCategoryRepository();
+            ProductRepository pr = new ProductRepository();
+            int SubCategoryID = pr.SelectById(ProductID).SubCategoryId;
+            int CategoryID = scr.SelectById(SubCategoryID).CategoryId;
+            return _dbSet.Where(w => w.IsActive == true).FirstOrDefault(x => x.Id == CategoryID);
+
+        }
     }
 }

@@ -32,7 +32,7 @@ namespace ETicaret.PL
                 lblProvince.Text = CurrentUser.Province;
                 lblDistrict.Text = CurrentUser.District;
                 List<Order> OrderList = General.Service.Order.ListByUserId(UserID);
-                if (OrderList.Count!=0)
+                if (OrderList.Count != 0)
                 {
                     pnlOrderContent.Visible = true;
                     pnlEmtyList.Visible = false;
@@ -144,7 +144,7 @@ namespace ETicaret.PL
             {
                 try
                 {
-                    string filename = Path.GetFileName(FileUploadProfileImage.FileName);
+                    string filename = DateTime.Now.ToString().Replace(" ", "").Replace(".", "").Replace(":", "") + DateTime.Now.Millisecond.ToString() + "_" + Path.GetFileName(FileUploadProfileImage.FileName);
                     if (filename != "")
                     {
                         if (SelectedUser.ProfileImage != "Images/profile-icon-png-917.png")

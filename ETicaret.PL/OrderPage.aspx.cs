@@ -26,7 +26,7 @@ namespace ETicaret.PL
                 lvProduct.DataSource = MyBasket;
                 lvProduct.DataBind();
                 BasketItem bskt = new BasketItem();
-                lblTotalPrice.Text = bskt.TotalAnmount(MyBasket).ToString();
+                lblTotalPrice.Text = bskt.TotalAnmount(MyBasket).ToString("C");
                 lblDeliveryDate.Text = DateTime.Now.AddDays(7).ToShortDateString();
             }
             else

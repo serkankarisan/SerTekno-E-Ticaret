@@ -65,10 +65,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-                                                <span><%# Eval("UnitPrice") %></span>
+                                                <span><%# Eval("UnitPrice","{0:c}") %></span>
                                             </div>
                                             <div class="col-4 col-sm-4 col-md-4 col-lg-3 col-xl-3">
-                                                <span><%# Eval("Amount") %></span>
+                                                <span><%# Eval("Amount","{0:c}") %></span>
                                             </div>
                                             <div class="text-right pr-5 d-none d-sm-none d-md-none d-lg-block d-xl-block col-1 col-sm-1 col-md-1 col-lg-2 col-xl-2">
                                                 <asp:Button ID="btnBasketItemDelete" runat="server" Text="&times;" Style="background-color: transparent; border: none;" OnClick="btnBasketItemDelete_Click" CommandArgument='<%# Eval("ProductId") %>' />
