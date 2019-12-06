@@ -12,7 +12,17 @@ namespace ETicaret.Entity.Entity
         [MaxLength(350, ErrorMessage = "İçerik 350 karakteri geçemez!")]
         [Required]
         [Column(Order = 3)]
-        public string Content { get => _content; set => _content = value; }
+        public string Content
+        {
+            get
+            {
+                return _content;
+            }
+            set
+            {
+                _content = Methods.CapitalizeText(value);
+            }
+        }
         public int ProductId { get; set; }
         public string UserId { get; set; }
 

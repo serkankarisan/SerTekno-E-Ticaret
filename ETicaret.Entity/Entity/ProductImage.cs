@@ -12,7 +12,17 @@ namespace ETicaret.Entity.Entity
         public string ImagesPath { get => _imagePath; set => _imagePath = value; }
         [Required]
         [Column(Order = 3)]
-        public string ImageType { get => _imageType; set => _imageType = value; }
+        public string ImageType
+        {
+            get
+            {
+                return _imageType;
+            }
+            set
+            {
+                _imageType = Methods.CapitalizeText(value);
+            }
+        }
         public int ProductId { get; set; }
 
         [ForeignKey("ProductId")]

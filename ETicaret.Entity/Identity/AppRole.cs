@@ -8,6 +8,16 @@ namespace ETicaret.Entity.Identity
         private string _description;
 
         [MaxLength(200, ErrorMessage = "Açıklama 200 karakteri geçemez!")]
-        public string Description { get => _description; set => _description = value; }
+        public string Description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                _description = Methods.CapitalizeText(value);
+            }
+        }
     }
 }

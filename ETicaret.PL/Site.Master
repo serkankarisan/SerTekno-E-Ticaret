@@ -97,10 +97,13 @@
                                     <asp:LinkButton CssClass="nav-link" ID="lnkbtnAdminProductManage" runat="server" PostBackUrl="~/ProductManage.aspx"><span class="h5">Ürün İşlemleri</span> </asp:LinkButton>
                                 </li>
                             </ul>
-                            <div class="form-inline my-2 my-lg-0">
-                                <asp:TextBox ID="AraTextboxMasterPage" runat="server" type="search" CssClass="form-control mr-sm-2" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search"></asp:TextBox>
-                                <asp:Button ID="btnSearch" runat="server" Text="Ara" CssClass="btn btn-outline-success my-2 my-sm-0 text-siyah" OnClick="btnSearch_Click" />
-                            </div>
+                            <asp:Panel ID="pnlSearch" runat="server" DefaultButton="btnSearch">
+                                <div class="form-inline my-2 my-lg-0">
+                                    <asp:TextBox ID="AraTextboxMasterPage" runat="server" type="search" CssClass="form-control mr-sm-2" placeholder="Aradığınız Ürünü Bulun..." aria-label="Search"></asp:TextBox>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidatorSearch" runat="server" ErrorMessage="Aramak için kelime girmelisiniz!" ControlToValidate="AraTextboxMasterPage" SetFocusOnError="True" ForeColor="#990000" Display="Dynamic" ValidationGroup="SearchValidate"></asp:RequiredFieldValidator>
+                                    <asp:Button ID="btnSearch" runat="server" Text="Ara" CssClass="btn btn-outline-success my-2 my-sm-0 text-siyah" OnClick="btnSearch_Click" />
+                                </div>
+                            </asp:Panel>
                         </div>
                     </nav>
                 </div>

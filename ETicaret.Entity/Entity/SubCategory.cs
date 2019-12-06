@@ -12,7 +12,17 @@ namespace ETicaret.Entity.Entity
         [MaxLength(150, ErrorMessage = "Alt kategori adı 150 karakteri geçemez!")]
         [Required]
         [Column(Order = 3)]
-        public string SubCategoryName { get => _subCategoryName; set => _subCategoryName = value; }
+        public string SubCategoryName
+        {
+            get
+            {
+                return _subCategoryName;
+            }
+            set
+            {
+                _subCategoryName = Methods.CapitalizeText(value);
+            }
+        }
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId")]

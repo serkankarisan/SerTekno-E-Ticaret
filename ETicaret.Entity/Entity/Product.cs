@@ -21,17 +21,47 @@ namespace ETicaret.Entity.Entity
         [MaxLength(100, ErrorMessage = "Ürün ismi 100 karakteri geçemez!")]
         [Required]
         [Column(Order = 3)]
-        public string ProductName { get => _productName; set => _productName = value; }
+        public string ProductName
+        {
+            get
+            {
+                return _productName;
+            }
+            set
+            {
+                _productName = Methods.CapitalizeText(value);
+            }
+        }
         [MaxLength(100, ErrorMessage = "Ürün kodu 100 karakteri geçemez!")]
         [Required]
         [Column(Order = 4)]
         public string ProductCode { get => _productCode; set => _productCode = value; }
         [MaxLength(100, ErrorMessage = "Karakter sayısını aştınız!")]
         [Column(Order = 5)]
-        public string Origin { get => _origin; set => _origin = value; }
+        public string Origin
+        {
+            get
+            {
+                return _origin;
+            }
+            set
+            {
+                _origin = Methods.CapitalizeText(value);
+            }
+        }
         [MaxLength(150, ErrorMessage = "Açıklama 150 karakteri geçemez!")]
         [Column(Order = 6)]
-        public string Decription { get => _decription; set => _decription = value; }
+        public string Decription
+        {
+            get
+            {
+                return _decription;
+            }
+            set
+            {
+                _decription = Methods.CapitalizeText(value);
+            }
+        }
         [Column(Order = 9)]
         public int WarrantyYearCount { get => _warrantyYearCount; set => _warrantyYearCount = value; }
         [Required]
@@ -45,7 +75,17 @@ namespace ETicaret.Entity.Entity
         public decimal Price { get => _price; set => _price = value; }
         [Required]
         [Column(Order = 13)]
-        public string Properties { get => _properties; set => _properties = value; }
+        public string Properties
+        {
+            get
+            {
+                return _properties;
+            }
+            set
+            {
+                _properties = Methods.CapitalizePropertyText(value);
+            }
+        }
         public int ModelId { get; set; }
         public int SubCategoryId { get; set; }
 

@@ -12,7 +12,17 @@ namespace ETicaret.Entity.Entity
         [MaxLength(100, ErrorMessage = "Marka ismi 100 karakteri geçemez!")]
         [Required]
         [Column(Order = 3)]
-        public string BrandName { get => _brandName; set => _brandName = value; }
+        public string BrandName
+        {
+            get
+            {
+                return _brandName;
+            }
+            set
+            {
+                _brandName = Methods.CapitalizeText(value);
+            }
+        }
 
         public virtual List<Model> Models { get; set; }
     }

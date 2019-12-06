@@ -123,6 +123,15 @@ namespace ETicaret.PL
         protected global::System.Web.UI.WebControls.LinkButton lnkbtnAdminProductManage;
 
         /// <summary>
+        /// pnlSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSearch;
+
+        /// <summary>
         /// AraTextboxMasterPage control.
         /// </summary>
         /// <remarks>
@@ -130,6 +139,15 @@ namespace ETicaret.PL
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AraTextboxMasterPage;
+
+        /// <summary>
+        /// RequiredFieldValidatorSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorSearch;
 
         /// <summary>
         /// btnSearch control.
